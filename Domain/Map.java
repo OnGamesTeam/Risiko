@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Map {
 
-	Collection<Continent> continents;
+	private ArrayList<Continent> continents;
 
 	/**
 	 * 

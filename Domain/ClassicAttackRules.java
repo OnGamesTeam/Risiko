@@ -35,8 +35,16 @@ public class ClassicAttackRules implements AttackRule {
 	 * @param attackingTerritoryName
 	 */
 	public ArrayList calculateAttackableTerritory(Map map, String attackingTerritoryName) {
-		// TODO - implement ClassicAttackRules.calculateAttackableTerritory
-		throw new UnsupportedOperationException();
+		Territory attackingTerritory= map.getTerritorybyName(attackingTerritoryName);
+		ArrayList<Territory> attackableTerritories = new ArrayList<Territory>();
+		for(Territory territory : attackingTerritory.getNeighbors()){
+         if(territory.getOwner() != attackingTerritory.getOwner()){
+
+         	attackableTerritories.add(territory);
+		 }
+
+		}
+       return attackableTerritories;
 	}
 
 }

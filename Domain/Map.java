@@ -15,8 +15,18 @@ public class Map {
 	 */
 
 	public ArrayList getPlayerTerritories(String playerID) {
-		// TODO - implement Map.getPlayerTerritories
-		throw new UnsupportedOperationException();
+		ArrayList<Territory> playerTerritories = new ArrayList<Territory>();
+		for(int i = 0; i<this.continents.size(); i++){
+			Continent currentContinent = this.continents.get(i);
+			ArrayList<Territory> currentTerritories = currentContinent.getTerritories();
+			for(int j = 0; j<currentTerritories.size(); j ++){
+				Player currentPlayer = currentTerritories.get(j).getOwner();
+				if(playerID == currentPlayer.getID()){
+					playerTerritories.add(currentTerritories.get(j));
+				}
+			}
+		}
+		return playerTerritories;
 	}
 
 	/**
@@ -24,8 +34,10 @@ public class Map {
 	 * @param attackingTerritoryName
 	 */
 	public Territory getTerritorybyName(String attackingTerritoryName) {
-		// TODO - implement Map.getTerritorybyName
+		/** IMPLEMENTAZIONE DI PROVA**/
+
 		throw new UnsupportedOperationException();
+
 	}
 
 	/**

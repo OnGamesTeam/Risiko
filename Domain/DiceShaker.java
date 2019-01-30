@@ -65,6 +65,7 @@ public class DiceShaker {
 	}
 
 	// to keep until testing is needed
+	/*
 	public static void main(String[] args) {
 		DiceShaker shaker = DiceShaker.getInstance();
 		shaker.setDiceNumber(3);
@@ -76,4 +77,5 @@ public class DiceShaker {
 		shaker.setDiceNumber(1);
 		System.out.print(shaker.dice.size());
 	}
+	*/
 }

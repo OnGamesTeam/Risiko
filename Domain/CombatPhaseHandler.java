@@ -38,6 +38,11 @@ public class CombatPhaseHandler {
 		throw new UnsupportedOperationException();
 	}
 
+	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber)
+	{
+		//TODO
+	}
+
 	public Result calculateAttackResult() {
 		// TODO - implement CombatPhaseHandler.calculateAttackResult
 		throw new UnsupportedOperationException();

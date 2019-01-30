@@ -29,13 +29,9 @@ public class RiskGame {
 
 	static public RiskGame getInstance()
 	{
-		if (Instance != null)
-			return Instance;
-		else
-		{
+		if (Instance == null)
 			Instance = new RiskGame();
-			return Instance;
-		}
+		return RiskGame.Instance;
 	}
 	//end singleton
 

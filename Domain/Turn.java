@@ -1,6 +1,6 @@
 public class Turn {
 
-	CombatPhase CPhase;
+	private CombatPhase CPhase;
 
 	public void newCombatPhase() {
 		this.CPhase = new CombatPhase();

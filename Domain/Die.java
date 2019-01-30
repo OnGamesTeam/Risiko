@@ -7,7 +7,7 @@ public class Die {
 	public void roll() {
 		Random rand = new Random();
 		this.faceValue = rand.nextInt(5)+1;
-		throw new UnsupportedOperationException();
+
 	}
 
 	public int getFaceValue() {

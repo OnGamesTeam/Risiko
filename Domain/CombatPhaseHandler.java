@@ -7,8 +7,17 @@ public class CombatPhaseHandler {
 	Map map;
 
 	public boolean startCombatPhase() {
-		// TODO - implement CombatPhaseHandler.startCombatPhase
-		throw new UnsupportedOperationException();
+
+        Boolean noError;
+        try {
+			this.currentTurn.newCombatPhase();
+			noError = true;
+		}
+		catch(Exception Error){
+
+        	noError =false;
+		}
+        return noError;
 	}
 
 	/**

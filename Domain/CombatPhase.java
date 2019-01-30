@@ -10,9 +10,8 @@ public class CombatPhase {
 	}
 
 	public boolean startTimer() {
-
-		// TODO - implement CombatPhase.startTimer
-		return  true; //da eliminare
+              /**IMPLEMENTARE**/
+	return true;
 	}
 
 	/**

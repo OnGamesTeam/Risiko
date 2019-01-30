@@ -11,13 +11,9 @@ public class DiceShaker {
 
 	static public DiceShaker getInstance()
 	{
-		if (Instance != null)
-			return Instance;
-		else
-			{
-				Instance = new DiceShaker();
-				return Instance;
-			}
+		if (Instance == null)
+		    Instance = new DiceShaker();
+		return DiceShaker.Instance;
 	}
 
 	/**

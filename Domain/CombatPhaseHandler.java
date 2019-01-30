@@ -6,7 +6,13 @@ public class CombatPhaseHandler {
 	AttackRule atkRule;
 	Map map;
 
-	public boolean startCombatPhase() {
+    public CombatPhaseHandler(Turn currentTurn, AttackRule atkRule, Map map) {
+        this.currentTurn = currentTurn;
+        this.atkRule = atkRule;
+        this.map = map;
+    }
+
+    public boolean startCombatPhase() {
 
         Boolean noError;
         try {
@@ -40,7 +46,10 @@ public class CombatPhaseHandler {
 	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber)
 	{
 		//TODO
-		throw new UnsupportedOperationException();
+        Territory atkTerritory = this.map.getTerritorybyName(attackingTerritoryName);
+        Territory defTerritory = this.map.getTerritorybyName(defendingTerritoryName);
+        CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
+        currentCPhase.makeNewAttack();
 	}
 
 	public Result calculateAttackResult() {

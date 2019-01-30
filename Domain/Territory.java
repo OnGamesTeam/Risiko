@@ -8,7 +8,7 @@ public class Territory {
 	 * 
 	 * @param playerID
 	 */
-	public bool checkOwner(string playerID) {
+	public boolean checkOwner(String playerID) {
 		// TODO - implement Territory.checkOwner
 		throw new UnsupportedOperationException();
 	}

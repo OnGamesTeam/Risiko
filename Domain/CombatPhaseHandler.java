@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class CombatPhaseHandler {
 
 	Turn currentTurn;
@@ -13,7 +15,7 @@ public class CombatPhaseHandler {
 	 * 
 	 * @param playerID
 	 */
-	public ArrayList showAttackingTerritories(string playerID) {
+	public ArrayList showAttackingTerritories(String playerID) {
 		// TODO - implement CombatPhaseHandler.showAttackingTerritories
 		throw new UnsupportedOperationException();
 	}
@@ -22,7 +24,7 @@ public class CombatPhaseHandler {
 	 * 
 	 * @param attackingTerritoryName
 	 */
-	public ArrayList showAttackableTerritories(string attackingTerritoryName) {
+	public ArrayList showAttackableTerritories(String attackingTerritoryName) {
 		// TODO - implement CombatPhaseHandler.showAttackableTerritories
 		throw new UnsupportedOperationException();
 	}

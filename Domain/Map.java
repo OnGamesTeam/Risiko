@@ -8,7 +8,7 @@ public class Map {
 	 * 
 	 * @param playerID
 	 */
-	public ArrayList getPlayerTerritories(string playerID) {
+	public ArrayList getPlayerTerritories(String playerID) {
 		// TODO - implement Map.getPlayerTerritories
 		throw new UnsupportedOperationException();
 	}
@@ -17,7 +17,7 @@ public class Map {
 	 * 
 	 * @param attackingTerritoryName
 	 */
-	public Territory getTerritorybyName(string attackingTerritoryName) {
+	public Territory getTerritorybyName(String attackingTerritoryName) {
 		// TODO - implement Map.getTerritorybyName
 		throw new UnsupportedOperationException();
 	}
@@ -27,7 +27,7 @@ public class Map {
 	 * @param playerID
 	 * @param atkRule
 	 */
-	public Territory getAttackingTerritory(string playerID, AttackRule atkRule) {
+	public Territory getAttackingTerritory(String playerID, AttackRule atkRule) {
 		// TODO - implement Map.getAttackingTerritory
 		throw new UnsupportedOperationException();
 	}
@@ -37,7 +37,7 @@ public class Map {
 	 * @param nameAttackingTerritory
 	 * @param atkRule
 	 */
-	public ArrayList getAttackableTerritories(string nameAttackingTerritory, AttackRule atkRule) {
+	public ArrayList getAttackableTerritories(String nameAttackingTerritory, AttackRule atkRule) {
 		// TODO - implement Map.getAttackableTerritories
 		throw new UnsupportedOperationException();
 	}

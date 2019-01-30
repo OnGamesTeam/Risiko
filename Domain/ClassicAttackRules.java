@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class ClassicAttackRules implements AttackRule {
 
 	/**
@@ -14,7 +16,7 @@ public class ClassicAttackRules implements AttackRule {
 	 * @param map
 	 * @param playerID
 	 */
-	public ArrayList calculateAttackingTerritory(Map map, string playerID) {
+	public ArrayList calculateAttackingTerritory(Map map, String playerID) {
 		// TODO - implement ClassicAttackRules.calculateAttackingTerritory
 		throw new UnsupportedOperationException();
 	}
@@ -24,7 +26,7 @@ public class ClassicAttackRules implements AttackRule {
 	 * @param map
 	 * @param attackingTerritoryName
 	 */
-	public ArrayList calculateAttackableTerritory(Map map, string attackingTerritoryName) {
+	public ArrayList calculateAttackableTerritory(Map map, String attackingTerritoryName) {
 		// TODO - implement ClassicAttackRules.calculateAttackableTerritory
 		throw new UnsupportedOperationException();
 	}

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Result {
 
 	private ArrayList atkDiceValue;

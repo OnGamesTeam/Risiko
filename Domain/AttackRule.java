@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface AttackRule {
 
 	/**
@@ -11,7 +13,7 @@ public interface AttackRule {
 	 * @param map
 	 * @param playerID
 	 */
-	ArrayList calculateAttackingTerritory(Map map, string playerID);
+	ArrayList calculateAttackingTerritory(Map map, String playerID);
 
 	/**
 	 * 
@@ -19,6 +21,6 @@ public interface AttackRule {
 	 * @param map
 	 * @param attackingTerritoryName
 	 */
-	ArrayList calculateAttackableTerritory(Map map, string attackingTerritoryName);
+	ArrayList calculateAttackableTerritory(Map map, String attackingTerritoryName);
 
 }

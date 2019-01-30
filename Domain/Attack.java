@@ -4,7 +4,7 @@ public class Attack {
 	private Territory defendingTerritory;
 	private int attackingArmiesNumber;
 	private int defendingArmiesNumber;
-	Result attackResult;
+	private Result attackResult;
 
 	/**
 	 * 
@@ -51,31 +51,19 @@ public class Attack {
 	}
 
 	public int getAttackingArmiesNumber() {
-		// TODO - implement Attack.getAttackingArmiesNumber
-		throw new UnsupportedOperationException();
+		return attackingArmiesNumber;
 	}
 
-	/**
-	 * 
-	 * @param attackingArmiesNumber
-	 */
 	public void setAttackingArmiesNumber(int attackingArmiesNumber) {
-		// TODO - implement Attack.setAttackingArmiesNumber
-		throw new UnsupportedOperationException();
+		this.attackingArmiesNumber = attackingArmiesNumber;
 	}
 
 	public int getDefendingArmiesNumber() {
-		// TODO - implement Attack.getDefendingArmiesNumber
-		throw new UnsupportedOperationException();
+		return defendingArmiesNumber;
 	}
 
-	/**
-	 * 
-	 * @param defendingArmiesNumber
-	 */
 	public void setDefendingArmiesNumber(int defendingArmiesNumber) {
-		// TODO - implement Attack.setDefendingArmiesNumber
-		throw new UnsupportedOperationException();
+		this.defendingArmiesNumber = defendingArmiesNumber;
 	}
 
 }

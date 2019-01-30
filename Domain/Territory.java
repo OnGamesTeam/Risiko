@@ -67,7 +67,7 @@ public class Territory {
 		this.owner = owner;
 	}
 
-	public ArrayList getNeighbors(){
+	public ArrayList<Territory> getNeighbors(){
 		return this.neighbors;
 	}
 

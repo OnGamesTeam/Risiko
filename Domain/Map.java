@@ -34,8 +34,10 @@ public class Map {
 	 * @param attackingTerritoryName
 	 */
 	public Territory getTerritorybyName(String attackingTerritoryName) {
-		// TODO - implement Map.getTerritorybyName
+		/** IMPLEMENTAZIONE DI PROVA**/
+
 		throw new UnsupportedOperationException();
+
 	}
 
 	/**

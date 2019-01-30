@@ -8,6 +8,8 @@ public class Die {
 	}
 
 	public void getFaceValue() {
+
+
 		// TODO - implement Die.getFaceValue
 		throw new UnsupportedOperationException();
 	}

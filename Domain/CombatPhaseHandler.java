@@ -7,8 +7,17 @@ public class CombatPhaseHandler {
 	Map map;
 
 	public boolean startCombatPhase() {
-		// TODO - implement CombatPhaseHandler.startCombatPhase
-		throw new UnsupportedOperationException();
+
+        Boolean noError;
+        try {
+			this.currentTurn.newCombatPhase();
+			noError = true;
+		}
+		catch(Exception Error){
+
+        	noError =false;
+		}
+        return noError;
 	}
 
 	/**
@@ -16,8 +25,7 @@ public class CombatPhaseHandler {
 	 * @param playerID
 	 */
 	public ArrayList showAttackingTerritories(String playerID) {
-		// TODO - implement CombatPhaseHandler.showAttackingTerritories
-		throw new UnsupportedOperationException();
+		return this.atkRule.calculateAttackingTerritory(this.map, playerID);
 	}
 
 	/**

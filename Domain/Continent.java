@@ -12,7 +12,7 @@ public class Continent {
 	}
 
 
-	public List<Territory> getTerritories() {
+	public ArrayList<Territory> getTerritories() {
 		// TODO - implement Continent.getTerritories
 		throw new UnsupportedOperationException();
 	}

@@ -1,11 +1,11 @@
 public class Player {
 
-	private int ID;
+	private String ID;
 	private String nickname;
 	private String colour;
 	DiceShaker diceShaker;
 
-	public int getID() {
+	public String getID() {
 
 		return this.ID;
 	}
@@ -14,7 +14,7 @@ public class Player {
 	 * 
 	 * @param ID
 	 */
-	public void setID(int ID) {
+	public void setID(String ID) {
 
 		this.ID = ID;
 	}

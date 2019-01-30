@@ -2,8 +2,15 @@ import java.util.*;
 
 public class Continent {
 
-	Collection<Territory> territory;
+	ArrayList<Territory> territories;
 	private String name;
+
+	//costruttore da modificare
+	public Continent(String continentName, ArrayList<Territory> continentTerritories){
+		this.name = continentName;
+		this.territories = continentTerritories;
+	}
+
 
 	public List<Territory> getTerritories() {
 		// TODO - implement Continent.getTerritories
@@ -31,4 +38,8 @@ public class Continent {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public String toString() {
+		return "Name: "+ this.name+" Territories: "+territories;
+	}
 }

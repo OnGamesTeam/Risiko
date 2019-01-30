@@ -12,6 +12,7 @@ public class Territory {
 	 * @param territoryName
 	 */
 
+	//costruttore da modificare
 	public Territory(String territoryName){
 		this.name = territoryName;
 		this.neighbors = new ArrayList<Territory>();
@@ -66,4 +67,12 @@ public class Territory {
 		this.owner = owner;
 	}
 
+	public ArrayList getNeighbors(){
+		return this.neighbors;
+	}
+
+	@Override
+	public String toString() {
+		return "Name: "+this.getName();
+	}
 }

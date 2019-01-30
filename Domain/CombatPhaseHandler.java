@@ -25,8 +25,7 @@ public class CombatPhaseHandler {
 	 * @param playerID
 	 */
 	public ArrayList showAttackingTerritories(String playerID) {
-		// TODO - implement CombatPhaseHandler.showAttackingTerritories
-		throw new UnsupportedOperationException();
+		return this.atkRule.calculateAttackingTerritory(this.map, playerID);
 	}
 
 	/**

@@ -1,8 +1,25 @@
+import java.util.ArrayList;
+
 public class Territory {
 
 	private String name;
 	private int armies;
-	Player owner;
+	private Player owner;
+	private ArrayList<Territory> neighbors;
+
+	/**
+	 *
+	 * @param territoryName
+	 */
+
+	public Territory(String territoryName){
+		this.name = territoryName;
+		this.neighbors = new ArrayList<Territory>();
+	}
+
+	public void addNeighbor(Territory neighbor){
+		this.neighbors.add(neighbor);
+	}
 
 	/**
 	 * 

@@ -46,10 +46,15 @@ public class CombatPhaseHandler {
 	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber)
 	{
 		//TODO
+
+        //da implementare map.getTerritorybyName()
         Territory atkTerritory = this.map.getTerritorybyName(attackingTerritoryName);
         Territory defTerritory = this.map.getTerritorybyName(defendingTerritoryName);
         CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
-        currentCPhase.makeNewAttack();
+        currentCPhase.makeNewAttack(atkTerritory,defTerritory,attackingArmyNumber);
+
+        //fase di test, questo controllo non è sufficiente
+        return true;
 	}
 
 	public Result calculateAttackResult() {

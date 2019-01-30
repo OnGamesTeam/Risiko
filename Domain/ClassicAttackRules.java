@@ -16,9 +16,17 @@ public class ClassicAttackRules implements AttackRule {
 	 * @param map
 	 * @param playerID
 	 */
+	@Override
 	public ArrayList calculateAttackingTerritory(Map map, String playerID) {
-		// TODO - implement ClassicAttackRules.calculateAttackingTerritory
-		throw new UnsupportedOperationException();
+		ArrayList<Territory> playerTerritory = map.getPlayerTerritories(playerID);
+		ArrayList<Territory> attackingTerritory = new ArrayList<Territory>();
+		for(int i = 0; i<playerTerritory.size(); i++){
+			Territory currentTerritory = playerTerritory.get(i);
+			if(currentTerritory.getArmies() >= 2){
+				attackingTerritory.add(currentTerritory);
+			}
+		}
+		return attackingTerritory;
 	}
 
 	/**

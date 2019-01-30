@@ -58,20 +58,4 @@ public class Map {
 		throw new UnsupportedOperationException();
 	}
 
-	public static void main(String[] args) {
-		Territory territorioprova = new Territory("Italia");
-		Territory territorioprova2 = new Territory("Francia");
-		Territory territorioprova3 = new Territory("Svizzera");
-		territorioprova.addNeighbor(territorioprova2);
-		territorioprova.addNeighbor(territorioprova3);
-		territorioprova2.addNeighbor(territorioprova);
-		territorioprova2.addNeighbor(territorioprova3);
-		ArrayList<Territory> euterritories = new ArrayList<Territory>();
-		euterritories.add(territorioprova);
-		euterritories.add(territorioprova2);
-		euterritories.add(territorioprova3);
-		Continent eu = new Continent("Europa", euterritories);
-		System.out.println(eu);
-	}
-
 }

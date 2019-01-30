@@ -50,5 +50,4 @@ public class RiskGame {
 	public void setMap(Map map) {
 		this.map = map;
 	}
-
 }

@@ -3,7 +3,13 @@ public class Player {
 	private String ID;
 	private String nickname;
 	private String colour;
-	DiceShaker diceShaker;
+	private DiceShaker diceShaker;
+
+	public Player(String playerID, String nickname, String colour){
+		this.ID = playerID;
+		this.nickname = nickname;
+		this.colour = colour;
+	}
 
 	public String getID() {
 

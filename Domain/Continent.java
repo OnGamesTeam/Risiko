@@ -13,8 +13,7 @@ public class Continent {
 
 
 	public ArrayList<Territory> getTerritories() {
-		// TODO - implement Continent.getTerritories
-		throw new UnsupportedOperationException();
+		return this.territories;
 	}
 
 	public String getName() {

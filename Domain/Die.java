@@ -6,18 +6,11 @@ public class Die {
 
 	public void roll() {
 		Random rand = new Random();
-		this.faceValue = rand.nextInt(5)+1;
-		throw new UnsupportedOperationException();
+		this.faceValue = rand.nextInt(6)+1;
 	}
 
 	public int getFaceValue() {
 		return this.faceValue;
-	}
-
-	public static void main(String[] args) {
-		Die d = new Die();
-		d.roll();
-		System.out.println(d.getFaceValue());
 	}
 
 }

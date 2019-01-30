@@ -6,8 +6,8 @@ public class Player {
 	DiceShaker diceShaker;
 
 	public int getID() {
-		// TODO - implement Player.getID
-		throw new UnsupportedOperationException();
+
+		return this.ID;
 	}
 
 	/**
@@ -15,11 +15,12 @@ public class Player {
 	 * @param ID
 	 */
 	public void setID(int ID) {
-		// TODO - implement Player.setID
-		throw new UnsupportedOperationException();
+
+		this.ID = ID;
 	}
 
 	public String getNickname() {
+
 		return this.nickname;
 	}
 
@@ -40,6 +41,7 @@ public class Player {
 	 * @param colour
 	 */
 	public void setColour(String colour) {
+
 		this.colour = colour;
 	}
 

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class ClassicAttackRules implements AttackRule {
 
 	/**
-	 * //ciao
+	 *
 	 * @param currentAttack
 	 */
 	public void calculateAttackResult(Attack currentAttack) {

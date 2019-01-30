@@ -2,11 +2,17 @@ import java.util.*;
 
 public class CombatPhase {
 
-	Collection<Attack> attacks;
+	ArrayList<Attack> attacks;
+
+	public CombatPhase(){
+		this.attacks = new ArrayList<Attack>();
+		this.startTimer();
+	}
 
 	public boolean startTimer() {
+
 		// TODO - implement CombatPhase.startTimer
-		throw new UnsupportedOperationException();
+		return  true; //da eliminare
 	}
 
 	/**
@@ -16,13 +22,16 @@ public class CombatPhase {
 	 * @param attackingArmiesNumber
 	 */
 	public void makeNewAttack(Territory atkTerritory, Territory defTerritory, int attackingArmiesNumber) {
-		// TODO - implement CombatPhase.makeNewAttack
-		throw new UnsupportedOperationException();
+		Attack attack = new Attack();
+		attack.setAttackingTerritory(atkTerritory);
+		attack.setDefendingTerritory(defTerritory);
+		attack.setAttackingArmiesNumber(attackingArmiesNumber);
+		this.attacks.add(attack);
 	}
 
 	public Attack getCurrentAttack() {
-		// TODO - implement CombatPhase.getCurrentAttack
-		throw new UnsupportedOperationException();
+		int atkNumber = this.attacks.size();
+		return this.attacks.get(atkNumber-1);
 	}
 
 }

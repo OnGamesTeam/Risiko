@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CombatPhaseHandler {
 
@@ -12,7 +13,56 @@ public class CombatPhaseHandler {
         this.map = map;
     }
 
-    public boolean startCombatPhase() {
+	public void updateMap(Attack currentAttack){
+		Scanner keyboard = new Scanner(System.in);
+
+
+		// Attack currentAttack = currentTurn.getCombatPhase().getCurrentAttack();
+
+		Territory attackingTerritory = currentAttack.getAttackingTerritory();
+		Territory defendingTerritory = currentAttack.getDefendingTerritory();
+
+		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI ATTACCO
+		int old_armies_in_attacking_territory = attackingTerritory.getArmies();
+		int new_armies_in_attacking_territory = old_armies_in_attacking_territory - currentAttack.getResult().getLostAttackingArmy();
+
+		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI DIFESA
+		int old_armies_in_defending_territory = defendingTerritory.getArmies();
+		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmy();
+
+		// if che controlla la conquista di un territorio
+		if (currentAttack.getResult().getConqueredDefendingTerritory()){
+
+			int moved_armies = 0;
+			//setta il territorio in difesa come posseduto dal giocatore attaccante
+			defendingTerritory.setOwner(attackingTerritory.getOwner());
+
+			//si aspetta che l'attaccante dichiari quante armate vuole spostare
+			while ( !(moved_armies >= currentAttack.getAttackingArmiesNumber() && moved_armies < new_armies_in_attacking_territory)) {
+				System.out.print("Hai conquistato" + currentAttack.getDefendingTerritory().getName() + ", quante armate vuoi spostare?");
+				moved_armies = keyboard.nextInt();
+			}
+
+			//spostamento delle armate dal territorio attaccante a quello conquistato
+			defendingTerritory.setArmies(moved_armies);
+			attackingTerritory.setArmies(new_armies_in_attacking_territory-moved_armies);
+
+			System.out.println("ora in" + attackingTerritory.getName() + " ci sono" + attackingTerritory.getArmies() + " armate");
+			System.out.println(" e in" + defendingTerritory.getName() + " ci sono" + defendingTerritory.getArmies() + "armate");
+		}
+
+		else {
+			//aggiornamento delle armate senza la conquista
+			attackingTerritory.setArmies(new_armies_in_attacking_territory);
+			defendingTerritory.setArmies(new_armies_in_defending_territory);
+
+			System.out.println("ora in" + attackingTerritory.getName() + " ci sono" + attackingTerritory.getArmies() + " armate");
+			System.out.println(" e in" + defendingTerritory.getName() + " ci sono" + defendingTerritory.getArmies() + "armate");
+		}
+	}
+
+
+	public boolean startCombatPhase() {
 
         Boolean noError;
         try {
@@ -71,5 +121,6 @@ public class CombatPhaseHandler {
 		// TODO - implement CombatPhaseHandler.endCombatPhase
 		throw new UnsupportedOperationException();
 	}
+
 
 }

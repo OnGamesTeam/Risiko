@@ -65,4 +65,5 @@ public class Map {
 		return atkRule.calculateAttackableTerritory(this, nameAttackingTerritory);
 	}
 
+
 }

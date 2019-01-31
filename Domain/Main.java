@@ -7,7 +7,7 @@ public class Main {
         Player carlo = new Player ("EFGH", "calatt", "blue");
         Territory territorioprova = new Territory("Italia");
         territorioprova.setOwner(faber);
-        territorioprova.setArmies(3);
+        territorioprova.setArmies(4);
         Territory territorioprova2 = new Territory("Francia");
         territorioprova2.setOwner(faber);
         territorioprova2.setArmies(2);
@@ -42,5 +42,6 @@ public class Main {
         newAttack.setDefendingArmiesNumber(3);
         rules.calculateAttackResult(newAttack);
         System.out.println(newAttack);
+        cpHandler.updateMap(newAttack);
     }
 }

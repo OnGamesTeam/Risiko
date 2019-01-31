@@ -84,7 +84,7 @@ public class ClassicAttackRules implements AttackRule {
 			attackingTerritory.setArmies(new_armies_in_attacking_territory-moved_armies);
 
 			System.out.println("ora in " + attackingTerritory.getName() + " ci sono " + attackingTerritory.getArmies() + " armate");
-			System.out.println(" e in " + defendingTerritory.getName() + " ci sono " + defendingTerritory.getArmies() + "armate");
+			System.out.println("e in " + defendingTerritory.getName() + " ci sono " + defendingTerritory.getArmies() + " armate");
 		}
 
 		else {
@@ -92,8 +92,8 @@ public class ClassicAttackRules implements AttackRule {
 			attackingTerritory.setArmies(new_armies_in_attacking_territory);
 			defendingTerritory.setArmies(new_armies_in_defending_territory);
 
-			System.out.println("ora in" + attackingTerritory.getName() + " ci sono" + attackingTerritory.getArmies() + " armate");
-			System.out.println(" e in" + defendingTerritory.getName() + " ci sono" + defendingTerritory.getArmies() + "armate");
+			System.out.println("ora in " + attackingTerritory.getName() + " ci sono " + attackingTerritory.getArmies() + " armate");
+			System.out.println("e in " + defendingTerritory.getName() + " ci sono " + defendingTerritory.getArmies() + " armate");
 		}
 	}
 

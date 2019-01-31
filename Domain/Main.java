@@ -1,10 +1,12 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import  java.util.HashMap;
+import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //CONFUGURATION
         ArrayList<String> colours = new ArrayList<String>();
@@ -19,6 +21,7 @@ public class Main {
         playerNames.add("bigfabbro");
         playerNames.add("livioski");
         playerNames.add("carlatt");
+        playerNames.add("zar");
 
         HashMap<String, ArrayList<String>> territoryNamesNeighbors = new HashMap<>();
         ArrayList<String> neighbors = new ArrayList<>();
@@ -83,7 +86,7 @@ public class Main {
         //Territories' creation
         territoryNamesNeighbors.forEach((territoryName, neighs) -> {
             Territory territory = new Territory(territoryName);
-            territory.setArmies(3);
+            territory.setArmies(4);
             euterritories.add(territory);
         });
 
@@ -121,17 +124,41 @@ public class Main {
             }
         });
 
-        Turn currentTurn = new Turn();
-        ClassicAttackRules atkrules = new ClassicAttackRules();
-        CombatPhaseHandler CPH = new CombatPhaseHandler(currentTurn, atkrules, map);
+        boolean play = true;
+        Turn currentTurn = new Turn ();
+        ClassicAttackRules atkRules = new ClassicAttackRules();
+        CombatPhaseHandler CPH = new CombatPhaseHandler(currentTurn, atkRules, map);
         CPH.startCombatPhase();
-        System.out.println(CPH.showAttackingTerritories("bigfabbro"));
-        System.out.println(CPH.showAttackableTerritories("Germania"));
-        System.out.println(CPH.makeAttack("Germania","Svizzera",3));
-        System.out.println(CPH.setDefendingArmiesNumber(3));
-        System.out.println(CPH.calculateAttackResult());
-        System.out.println(CPH.showAttackingTerritories("bigfabbro"));
-        System.out.println(CPH.showAttackableTerritories("Germania"));
-
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Questi sono i giocatori: ");
+        for(int j = 0; j<players.size(); j++){
+            System.out.print(players.get(j).getID() +" ");
+        }
+        System.out.println("Scegli il tuo giocatore: ");
+        String myPlayer = keyboard.next();
+        while(CPH.showAttackingTerritories(myPlayer).size()>0) {
+            System.out.println("I tuoi territori: ");
+            System.out.println(map.getPlayerTerritories(myPlayer));
+            System.out.println("Territori dai quali puoi muovere un attacco: ");
+            System.out.println(CPH.showAttackingTerritories(myPlayer));
+            System.out.println("Inserisci territorio dal quale vuoi muovere un attacco: ");
+            String atkTerritoryName = keyboard.next();
+            System.out.println("Territori attaccabili da " + atkTerritoryName + " : \n" + CPH.showAttackableTerritories(atkTerritoryName));
+            System.out.println("Inserisci territorio da attaccare: ");
+            String defTerritoryName = keyboard.next();
+            System.out.println("Inserisci numero di armate con il quale attaccare: ");
+            int atkArmies = keyboard.nextInt();
+            CPH.makeAttack(atkTerritoryName, defTerritoryName, atkArmies);
+            int defArmies = map.getTerritorybyName(defTerritoryName).getArmies();
+            if(defArmies<=3) {
+                CPH.setDefendingArmiesNumber(defArmies);
+            }
+            else {
+                defArmies = 3;
+                CPH.setDefendingArmiesNumber(defArmies);
+            }
+            System.out.println("Il difensore utilizza "+defArmies+" armate");
+            System.out.println(CPH.calculateAttackResult());
+        }
     }
 }

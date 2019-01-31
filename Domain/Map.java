@@ -21,7 +21,7 @@ public class Map {
 			ArrayList<Territory> currentTerritories = currentContinent.getTerritories();
 			for(int j = 0; j<currentTerritories.size(); j ++){
 				Player currentPlayer = currentTerritories.get(j).getOwner();
-				if(playerID == currentPlayer.getID()){
+				if(playerID.equals(currentPlayer.getID())){
 					playerTerritories.add(currentTerritories.get(j));
 				}
 			}
@@ -40,7 +40,7 @@ public class Map {
 			 this.continents) {
 			for (Territory territory:
 				 continent.getTerritories()) {
-				if (territory.getName() == territoryName)
+				if (territory.getName().equals(territoryName))
 					return territory;
 			}
 		}

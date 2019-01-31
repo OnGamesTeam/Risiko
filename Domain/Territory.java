@@ -73,6 +73,6 @@ public class Territory {
 
 	@Override
 	public String toString() {
-		return "Name: "+this.getName();
+		return "Name: "+this.getName() + " Armies: "+this.getArmies();
 	}
 }

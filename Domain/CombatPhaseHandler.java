@@ -30,8 +30,8 @@ public class CombatPhaseHandler {
 	 * 
 	 * @param playerID
 	 */
-	public ArrayList<Territory> showAttackingTerritories(String playerID) {
-		return this.map.getAttackingTerritory(playerID, this.atkRule);
+	public ArrayList showAttackingTerritories(String playerID) {
+		return this.atkRule.calculateAttackingTerritory(this.map, playerID);
 	}
 
 	/**
@@ -39,15 +39,21 @@ public class CombatPhaseHandler {
 	 * @param attackingTerritoryName
 	 */
 	public ArrayList showAttackableTerritories(String attackingTerritoryName) {
-		return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
+		// TODO - implement CombatPhaseHandler.showAttackableTerritories
+		throw new UnsupportedOperationException();
 	}
 
 	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber)
 	{
 		//TODO
+
+        //da implementare map.getTerritorybyName()
         Territory atkTerritory = this.map.getTerritorybyName(attackingTerritoryName);
         Territory defTerritory = this.map.getTerritorybyName(defendingTerritoryName);
         CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
+        currentCPhase.makeNewAttack(atkTerritory,defTerritory,attackingArmyNumber);
+
+        //fase di test, questo controllo non è sufficiente
         return true;
 	}
 

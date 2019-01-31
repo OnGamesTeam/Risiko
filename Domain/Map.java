@@ -31,7 +31,7 @@ public class Map {
 
 	/**
 	 * DA RIFARE QUANDO È INTEGRATO IL DB
-	 * @param attackingTerritoryName
+	 * @param territoryName
 	 */
 	public Territory getTerritorybyName(String territoryName) {
 		/** IMPLEMENTAZIONE DI PROVA**/
@@ -39,7 +39,7 @@ public class Map {
 		for (Continent continent:
 			 this.continents) {
 			for (Territory territory:
-				 continent.territories) {
+				 continent.getTerritories()) {
 				if (territory.getName() == territoryName)
 					return territory;
 			}
@@ -65,5 +65,10 @@ public class Map {
 		return atkRule.calculateAttackableTerritory(this, nameAttackingTerritory);
 	}
 
-
+    @Override
+    public String toString() {
+        return "Map{" +
+                "continents=" + continents +
+                '}';
+    }
 }

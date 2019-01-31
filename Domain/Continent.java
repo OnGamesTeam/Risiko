@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Continent {
 
-	ArrayList<Territory> territories;
+	private ArrayList<Territory> territories;
 	private String name;
 
 	//costruttore da modificare

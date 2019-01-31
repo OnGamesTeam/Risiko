@@ -1,46 +1,128 @@
 import java.util.ArrayList;
+import java.util.Random;
+import  java.util.HashMap;
 
 public class Main {
 
     public static void main(String[] args) {
-        Player faber = new Player("ABCD", "bigfabbro", "red");
-        Player carlo = new Player ("EFGH", "calatt", "blue");
-        Territory territorioprova = new Territory("Italia");
-        territorioprova.setOwner(faber);
-        territorioprova.setArmies(4);
-        Territory territorioprova2 = new Territory("Francia");
-        territorioprova2.setOwner(faber);
-        territorioprova2.setArmies(2);
-        Territory territorioprova3 = new Territory("Svizzera");
-        territorioprova3.setOwner(carlo);
-        territorioprova3.setArmies(3);
-        territorioprova.addNeighbor(territorioprova2);
-        territorioprova.addNeighbor(territorioprova3);
-        territorioprova2.addNeighbor(territorioprova);
-        territorioprova2.addNeighbor(territorioprova3);
+
+        //CONFUGURATION
+        ArrayList<String> colours = new ArrayList<String>();
+        colours.add("black");
+        colours.add("blue");
+        colours.add("red");
+        colours.add("green");
+        colours.add("yellow");
+        colours.add("purple");
+
+        ArrayList<String> playerNames = new ArrayList<String>();
+        playerNames.add("bigfabbro");
+        playerNames.add("livioski");
+        playerNames.add("carlatt");
+
+        HashMap<String, ArrayList<String>> territoryNamesNeighbors = new HashMap<>();
+        ArrayList<String> neighbors = new ArrayList<>();
+        neighbors.add("Germania");
+        neighbors.add("Francia");
+        territoryNamesNeighbors.put("Benelux", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Germania");
+        neighbors.add("Svizzera");
+        neighbors.add("Italia");
+        territoryNamesNeighbors.put("Austria", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Spagna");
+        territoryNamesNeighbors.put("Portogallo", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Italia");
+        neighbors.add("Francia");
+        neighbors.add("Germania");
+        neighbors.add("Austria");
+        territoryNamesNeighbors.put("Svizzera", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Germania");
+        territoryNamesNeighbors.put("Danimarca", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Francia");
+        neighbors.add("Svizzera");
+        neighbors.add("Austria");
+        territoryNamesNeighbors.put("Italia", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Francia");
+        neighbors.add("Portogallo");
+        territoryNamesNeighbors.put("Spagna", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Svizzera");
+        neighbors.add("Francia");
+        neighbors.add("Benelux");
+        neighbors.add("Danimarca");
+        neighbors.add("Austria");
+        territoryNamesNeighbors.put("Germania", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Italia");
+        neighbors.add("Svizzera");
+        neighbors.add("Germania");
+        neighbors.add("Benelux");
+        neighbors.add("Spagna");
+        territoryNamesNeighbors.put("Francia", neighbors);
+        //END CONFIGURATION
+
+
         ArrayList<Territory> euterritories = new ArrayList<Territory>();
-        euterritories.add(territorioprova);
-        euterritories.add(territorioprova2);
-        euterritories.add(territorioprova3);
+        ArrayList<Player> players = new ArrayList<Player>();
+        Random rand = new Random();
+
+        //Territories' creation
+        territoryNamesNeighbors.forEach((territoryName, neighs) -> {
+            Territory territory = new Territory(territoryName);
+            territory.setArmies(rand.nextInt(6)+1);
+            euterritories.add(new Territory(territoryName));
+        });
+
+        /*for (String territoryName:
+             territoryNamesNeighbors) {
+            euterritories.add(new Territory(territoryName));
+        }*/
         Continent eu = new Continent("Europa", euterritories);
+
+        //Players' creation colour assign
+        for (String player:
+             playerNames) {
+            int indColour = rand.nextInt((colours.size())+1);
+            players.add(new Player(player, player, colours.get(indColour)));
+            colours.remove(indColour);
+        }
+
+        //Assign Owner to Territory
+        int i=0;
+        for (Territory territory:
+             eu.getTerritories()) {
+            territory.setOwner(players.get(i));
+            i=(i+1)%players.size();
+        }
+
+        Map map = new Map();
         ArrayList<Continent> continents = new ArrayList<Continent>();
         continents.add(eu);
-        System.out.println(eu);
-        // Mappa
-        Map m = new Map();
-        m.setContinents(continents);
-        ClassicAttackRules rules = new ClassicAttackRules();
-        ArrayList<Territory> atkterritories = rules.calculateAttackingTerritory(m, "ABCD");
-        System.out.println(atkterritories);
-        //test e creazione di combat phase handler
-        CombatPhaseHandler cpHandler = new CombatPhaseHandler(new Turn(new CombatPhase()),new ClassicAttackRules(), m);
-        System.out.print(cpHandler.makeAttack("Francia", "Svizzera", 1));
-        Attack newAttack = new Attack();
-        newAttack.setAttackingTerritory(territorioprova);
-        newAttack.setDefendingTerritory(territorioprova3);
-        newAttack.setAttackingArmiesNumber(3);
-        newAttack.setDefendingArmiesNumber(3);
-        rules.calculateAttackResult(newAttack);
-        System.out.println(newAttack);
+        map.setContinents(continents);
+
+        //Impostazione dei vicini
+        territoryNamesNeighbors.forEach((territoryName, neighs) -> {
+            Territory territory = map.getTerritorybyName(territoryName);
+            for (String neighName:
+                 neighs) {
+                territory.addNeighbor(map.getTerritorybyName(neighName));
+            }
+        });
+
+        System.out.print(map.toString());
     }
 }

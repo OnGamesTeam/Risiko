@@ -34,7 +34,7 @@ public class CombatPhaseHandler {
 	 * 
 	 * @param playerID
 	 */
-	public ArrayList showAttackingTerritories(String playerID) {
+	public ArrayList<Territory> showAttackingTerritories(String playerID) {
 	    return this.map.getAttackingTerritory(playerID,this.atkRule);
     }
 
@@ -42,7 +42,7 @@ public class CombatPhaseHandler {
 	 * 
 	 * @param attackingTerritoryName
 	 */
-	public ArrayList showAttackableTerritories(String attackingTerritoryName) {
+	public ArrayList<Territory> showAttackableTerritories(String attackingTerritoryName) {
 	    return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
     }
 

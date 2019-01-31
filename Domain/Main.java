@@ -83,31 +83,29 @@ public class Main {
         //Territories' creation
         territoryNamesNeighbors.forEach((territoryName, neighs) -> {
             Territory territory = new Territory(territoryName);
-            territory.setArmies(rand.nextInt(6)+1);
-            euterritories.add(new Territory(territoryName));
+            territory.setArmies(3);
+            euterritories.add(territory);
         });
 
-        /*for (String territoryName:
-             territoryNamesNeighbors) {
-            euterritories.add(new Territory(territoryName));
-        }*/
+
         Continent eu = new Continent("Europa", euterritories);
 
         //Players' creation colour assign
-        for (String player:
-             playerNames) {
-            int indColour = rand.nextInt((colours.size())+1);
+        for (String player :
+                playerNames) {
+            int indColour = rand.nextInt(colours.size());
             players.add(new Player(player, player, colours.get(indColour)));
             colours.remove(indColour);
         }
 
         //Assign Owner to Territory
-        int i=0;
-        for (Territory territory:
-             eu.getTerritories()) {
+        int i = 0;
+        for (Territory territory :
+                eu.getTerritories()) {
             territory.setOwner(players.get(i));
-            i=(i+1)%players.size();
+            i = (i + 1) % players.size();
         }
+
 
         Map map = new Map();
         ArrayList<Continent> continents = new ArrayList<Continent>();
@@ -117,12 +115,23 @@ public class Main {
         //Impostazione dei vicini
         territoryNamesNeighbors.forEach((territoryName, neighs) -> {
             Territory territory = map.getTerritorybyName(territoryName);
-            for (String neighName:
-                 neighs) {
+            for (String neighName :
+                    neighs) {
                 territory.addNeighbor(map.getTerritorybyName(neighName));
             }
         });
 
-        System.out.print(map.toString());
+        Turn currentTurn = new Turn();
+        ClassicAttackRules atkrules = new ClassicAttackRules();
+        CombatPhaseHandler CPH = new CombatPhaseHandler(currentTurn, atkrules, map);
+        CPH.startCombatPhase();
+        System.out.println(CPH.showAttackingTerritories("bigfabbro"));
+        System.out.println(CPH.showAttackableTerritories("Germania"));
+        System.out.println(CPH.makeAttack("Germania","Svizzera",3));
+        System.out.println(CPH.setDefendingArmiesNumber(3));
+        System.out.println(CPH.calculateAttackResult());
+        System.out.println(CPH.showAttackingTerritories("bigfabbro"));
+        System.out.println(CPH.showAttackableTerritories("Germania"));
+
     }
 }

@@ -12,7 +12,7 @@ public class Main {
         territorioprova2.setOwner(faber);
         territorioprova2.setArmies(2);
         Territory territorioprova3 = new Territory("Svizzera");
-        territorioprova3.setOwner(carlo);
+        territorioprova3.setOwner(faber);
         territorioprova.addNeighbor(territorioprova2);
         territorioprova.addNeighbor(territorioprova3);
         territorioprova2.addNeighbor(territorioprova);

@@ -31,17 +31,16 @@ public class CombatPhaseHandler {
 	 * @param playerID
 	 */
 	public ArrayList showAttackingTerritories(String playerID) {
-		return this.atkRule.calculateAttackingTerritory(this.map, playerID);
-	}
+	    return this.map.getAttackingTerritory(playerID,this.atkRule);
+    }
 
 	/**
 	 * 
 	 * @param attackingTerritoryName
 	 */
 	public ArrayList showAttackableTerritories(String attackingTerritoryName) {
-		// TODO - implement CombatPhaseHandler.showAttackableTerritories
-		throw new UnsupportedOperationException();
-	}
+	    return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
+    }
 
 	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber)
 	{
@@ -57,10 +56,17 @@ public class CombatPhaseHandler {
         return true;
 	}
 
+	public boolean setDefendingArmiesNumber(int DefendingArmiesNumber){
+	    CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
+	    Attack attack = currentCPhase.getCurrentAttack();
+	    attack.setDefendingArmiesNumber(DefendingArmiesNumber);
+	    return true;
+    }
 	public Result calculateAttackResult() {
-		// TODO - implement CombatPhaseHandler.calculateAttackResult
-		throw new UnsupportedOperationException();
-	}
+        CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
+        Attack attack = currentCPhase.getCurrentAttack();
+        return attack.getAttackResult(this.atkRule);
+    }
 
 	public boolean endCombatPhase() {
 		// TODO - implement CombatPhaseHandler.endCombatPhase

@@ -7,8 +7,7 @@ public class ClassicAttackRules implements AttackRule {
 	 * @param currentAttack
 	 */
 	public void calculateAttackResult(Attack currentAttack) {
-		// TODO - implement ClassicAttackRules.calculateAttackResult
-		throw new UnsupportedOperationException();
+
 	}
 
 	/**

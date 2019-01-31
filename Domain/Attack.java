@@ -6,11 +6,8 @@ public class Attack {
 	private int defendingArmiesNumber;
 	private Result attackResult;
 
-	/**
-	 * 
-	 * @param atkRules
-	 */
-	public Result getAttackResult(AttackRule atkRules) {
+
+	public Result getResult() {
 		return this.attackResult;
 	}
 
@@ -38,8 +35,9 @@ public class Attack {
 		this.defendingTerritory = defendingTerritory;
 	}
 
-	public Result getAttackResult() {
-		return this.attackResult;
+	public Result getAttackResult(AttackRule atkRules){
+		atkRules.calculateAttackResult(this);
+		return this.getResult();
 	}
 
 	/**

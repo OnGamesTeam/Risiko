@@ -45,9 +45,8 @@ public class Map {
 	 * @param playerID
 	 * @param atkRule
 	 */
-	public Territory getAttackingTerritory(String playerID, AttackRule atkRule) {
-		// TODO - implement Map.getAttackingTerritory
-		throw new UnsupportedOperationException();
+	public ArrayList<Territory> getAttackingTerritory(String playerID, AttackRule atkRule) {
+		return atkRule.calculateAttackingTerritory(this, playerID);
 	}
 
 	/**
@@ -56,8 +55,7 @@ public class Map {
 	 * @param atkRule
 	 */
 	public ArrayList getAttackableTerritories(String nameAttackingTerritory, AttackRule atkRule) {
-		// TODO - implement Map.getAttackableTerritories
-		throw new UnsupportedOperationException();
+		return atkRule.calculateAttackableTerritory(this, nameAttackingTerritory);
 	}
 
 }

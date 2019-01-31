@@ -7,7 +7,7 @@ public class Main {
         Player carlo = new Player ("EFGH", "calatt", "blue");
         Territory territorioprova = new Territory("Italia");
         territorioprova.setOwner(faber);
-        territorioprova.setArmies(3);
+        territorioprova.setArmies(1);
         Territory territorioprova2 = new Territory("Francia");
         territorioprova2.setOwner(faber);
         territorioprova2.setArmies(2);
@@ -28,7 +28,7 @@ public class Main {
         Map m = new Map();
         m.setContinents(continents);
         ClassicAttackRules rules = new ClassicAttackRules();
-        ArrayList<Territory> atkterritories = rules.calculateAttackingTerritory(m, "ABCD");
-        System.out.println(atkterritories);
+        System.out.println(m.getAttackingTerritory(faber.getID(), rules));
+        System.out.println(m.getAttackableTerritories("Francia", rules));
     }
 }

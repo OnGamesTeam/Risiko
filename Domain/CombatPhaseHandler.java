@@ -30,8 +30,8 @@ public class CombatPhaseHandler {
 	 * 
 	 * @param playerID
 	 */
-	public ArrayList showAttackingTerritories(String playerID) {
-		return this.atkRule.calculateAttackingTerritory(this.map, playerID);
+	public ArrayList<Territory> showAttackingTerritories(String playerID) {
+		return this.map.getAttackingTerritory(playerID, this.atkRule);
 	}
 
 	/**
@@ -39,8 +39,7 @@ public class CombatPhaseHandler {
 	 * @param attackingTerritoryName
 	 */
 	public ArrayList showAttackableTerritories(String attackingTerritoryName) {
-		// TODO - implement CombatPhaseHandler.showAttackableTerritories
-		throw new UnsupportedOperationException();
+		return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
 	}
 
 	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber)
@@ -49,7 +48,7 @@ public class CombatPhaseHandler {
         Territory atkTerritory = this.map.getTerritorybyName(attackingTerritoryName);
         Territory defTerritory = this.map.getTerritorybyName(defendingTerritoryName);
         CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
-        currentCPhase.makeNewAttack();
+        return true;
 	}
 
 	public Result calculateAttackResult() {

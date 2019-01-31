@@ -46,7 +46,6 @@ public class CombatPhaseHandler {
 	{
 		//TODO
 
-        //da implementare map.getTerritorybyName()
         Territory atkTerritory = this.map.getTerritorybyName(attackingTerritoryName);
         Territory defTerritory = this.map.getTerritorybyName(defendingTerritoryName);
         CombatPhase currentCPhase = this.currentTurn.getCombatPhase();

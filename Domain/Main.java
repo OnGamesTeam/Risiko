@@ -7,12 +7,12 @@ public class Main {
         Player carlo = new Player ("EFGH", "calatt", "blue");
         Territory territorioprova = new Territory("Italia");
         territorioprova.setOwner(faber);
-        territorioprova.setArmies(1);
+        territorioprova.setArmies(3);
         Territory territorioprova2 = new Territory("Francia");
         territorioprova2.setOwner(faber);
         territorioprova2.setArmies(2);
         Territory territorioprova3 = new Territory("Svizzera");
-        territorioprova3.setOwner(faber);
+        territorioprova3.setOwner(carlo);
         territorioprova.addNeighbor(territorioprova2);
         territorioprova.addNeighbor(territorioprova3);
         territorioprova2.addNeighbor(territorioprova);
@@ -25,10 +25,14 @@ public class Main {
         ArrayList<Continent> continents = new ArrayList<Continent>();
         continents.add(eu);
         System.out.println(eu);
+        // Mappa
         Map m = new Map();
         m.setContinents(continents);
         ClassicAttackRules rules = new ClassicAttackRules();
-        System.out.println(m.getAttackingTerritory(faber.getID(), rules));
-        System.out.println(m.getAttackableTerritories("Francia", rules));
+        ArrayList<Territory> atkterritories = rules.calculateAttackingTerritory(m, "ABCD");
+        System.out.println(atkterritories);
+        //test e creazione di combat phase handler
+        CombatPhaseHandler cpHandler = new CombatPhaseHandler(new Turn(new CombatPhase()),new ClassicAttackRules(), m);
+        System.out.print(cpHandler.makeAttack("Francia", "Svizzera", 1));
     }
 }

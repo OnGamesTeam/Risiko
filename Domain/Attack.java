@@ -64,4 +64,8 @@ public class Attack {
 		this.defendingArmiesNumber = defendingArmiesNumber;
 	}
 
+	@Override
+	public String toString() {
+		return "Atk: " + this.getAttackingTerritory() + " AtkArmies: " + this.getAttackingArmiesNumber() + " Def: " + this.getDefendingTerritory() + " DefArmies: " + this.getDefendingArmiesNumber() + " Result: " + this.getResult();
+	}
 }

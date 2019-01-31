@@ -68,4 +68,8 @@ public class Result {
 		this.conqueredDefendingTerritory = conqueredDefendingTerritory;
 	}
 
+	@Override
+	public String toString() {
+		return "AtkDiceValue: "+this.getAtkDiceValue() + " DefDiceValue: "+this.getDefDiceValue()+ " lostAtk: "+this.getLostAttackingArmy() + " lostDef: "+ this.getLostDefendingArmy() + " Conquered: "+this.getConqueredDefendingTerritory();
+	}
 }

@@ -13,6 +13,7 @@ public class Main {
         territorioprova2.setArmies(2);
         Territory territorioprova3 = new Territory("Svizzera");
         territorioprova3.setOwner(carlo);
+        territorioprova3.setArmies(3);
         territorioprova.addNeighbor(territorioprova2);
         territorioprova.addNeighbor(territorioprova3);
         territorioprova2.addNeighbor(territorioprova);
@@ -34,5 +35,12 @@ public class Main {
         //test e creazione di combat phase handler
         CombatPhaseHandler cpHandler = new CombatPhaseHandler(new Turn(new CombatPhase()),new ClassicAttackRules(), m);
         System.out.print(cpHandler.makeAttack("Francia", "Svizzera", 1));
+        Attack newAttack = new Attack();
+        newAttack.setAttackingTerritory(territorioprova);
+        newAttack.setDefendingTerritory(territorioprova3);
+        newAttack.setAttackingArmiesNumber(3);
+        newAttack.setDefendingArmiesNumber(3);
+        rules.calculateAttackResult(newAttack);
+        System.out.println(newAttack);
     }
 }

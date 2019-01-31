@@ -2,11 +2,11 @@ import java.util.*;
 
 public class DiceShaker {
 	static private DiceShaker Instance = null;
-	private Deque<Die> dice;
+	private ArrayList<Die> dice;
 
 	//singleton
 	private DiceShaker() {
-		this.dice = new LinkedList<Die>();
+		this.dice = new ArrayList<Die>();
 	}
 
 	static public DiceShaker getInstance()
@@ -26,20 +26,20 @@ public class DiceShaker {
 		if (sizeVariation > 0)
 		{
 			for (int i = 0; i < sizeVariation; i++) {
-				this.dice.push(new Die());
+				this.dice.add(new Die());
 			}
 		}
 		else if (sizeVariation < 0)
 		{
 			int absSizeVariation = java.lang.Math.abs(sizeVariation);
 			for (int i = 0; i < absSizeVariation; i++) {
-				this.dice.pop();
+				this.dice.remove(i);
 			}
 		}
 		else if (dice == null)
 		{
 			for (int i = 0; i < DiceNumber; i++) {
-				this.dice.push(new Die());
+				this.dice.add(new Die());
 			}
 		}
 	}
@@ -49,9 +49,8 @@ public class DiceShaker {
 	 */
 	public void rollDice()
 	{
-		for (Die die:
-			 this.dice) {
-			die.roll();
+		for ( int i = 0; i<this.dice.size(); i++){
+			this.dice.get(i).roll();
 		}
 	}
 
@@ -59,13 +58,13 @@ public class DiceShaker {
 	{
 		ArrayList<Integer> diceValue = new ArrayList<Integer>();
 		for (int i = 0; i<this.dice.size(); i++){
-			diceValue.add(this.dice.pop().getFaceValue());
+			diceValue.add(this.dice.get(i).getFaceValue());
 		}
 		return diceValue;
 	}
 
 	// to keep until testing is needed
-	/*
+/*
 	public static void main(String[] args) {
 		DiceShaker shaker = DiceShaker.getInstance();
 		shaker.setDiceNumber(3);
@@ -74,8 +73,8 @@ public class DiceShaker {
 		System.out.print(shaker.dice.size());
 		shaker.setDiceNumber(5);
 		System.out.print(shaker.dice.size());
-		shaker.setDiceNumber(1);
-		System.out.print(shaker.dice.size());
+		shaker.rollDice();
+		System.out.println(shaker.getDiceValue());
 	}
 	*/
 }

@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Result {
 
-	private ArrayList atkDiceValue;
-	private ArrayList defDiceValue;
+	private ArrayList<Integer> atkDiceValue;
+	private ArrayList<Integer> defDiceValue;
 	private int lostAttackingArmy;
 	private int lostDefendingArmy;
 	private boolean conqueredDefendingTerritory;

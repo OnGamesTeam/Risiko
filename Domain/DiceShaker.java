@@ -55,9 +55,13 @@ public class DiceShaker {
 		}
 	}
 
-	public void getDiceValue(int dieNumber)
+	public ArrayList<Integer> getDiceValue()
 	{
-		//TODO
+		ArrayList<Integer> diceValue = new ArrayList<Integer>();
+		for (int i = 0; i<this.dice.size(); i++){
+			diceValue.add(this.dice.pop().getFaceValue());
+		}
+		return diceValue;
 	}
 
 	// to keep until testing is needed

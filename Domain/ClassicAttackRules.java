@@ -7,7 +7,18 @@ public class ClassicAttackRules implements AttackRule {
 	 * @param currentAttack
 	 */
 	public void calculateAttackResult(Attack currentAttack) {
-
+		Player attacker = currentAttack.getAttackingTerritory().getOwner();
+		Player defender = currentAttack.getDefendingTerritory().getOwner();
+		DiceShaker diceShaker = DiceShaker.getInstance();
+		diceShaker.setDiceNumber(currentAttack.getAttackingArmiesNumber());
+		diceShaker.rollDice();
+		ArrayList<Integer> attackerDice = diceShaker.getDiceValue();
+		diceShaker.setDiceNumber(currentAttack.getDefendingArmiesNumber());
+		diceShaker.rollDice();
+		ArrayList<Integer> defenderDice = diceShaker.getDiceValue();
+		attackerDice.sort(null);
+		defenderDice.sort(null):
+		
 	}
 
 	/**

@@ -10,7 +10,7 @@ public class Map {
 		this.continents = continents;
 	}
 	/**
-	 * 
+	 * DA RIFARE QUANDO È INTEGRATO IL DB
 	 * @param playerID
 	 */
 
@@ -30,7 +30,7 @@ public class Map {
 	}
 
 	/**
-	 * 
+	 * DA RIFARE QUANDO È INTEGRATO IL DB
 	 * @param attackingTerritoryName
 	 */
 	public Territory getTerritorybyName(String territoryName) {

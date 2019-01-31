@@ -42,6 +42,5 @@ public class Main {
         newAttack.setDefendingArmiesNumber(3);
         rules.calculateAttackResult(newAttack);
         System.out.println(newAttack);
-        cpHandler.updateMap(newAttack);
     }
 }

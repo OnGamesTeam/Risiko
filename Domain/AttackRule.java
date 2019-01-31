@@ -9,6 +9,13 @@ public interface AttackRule {
 	void calculateAttackResult(Attack currentAttack);
 
 	/**
+	 *
+	 * @param currentAttack
+	 */
+	void updateMap(Attack currentAttack);
+
+
+	/**
 	 * 
 	 * @param map
 	 * @param playerID
@@ -22,5 +29,7 @@ public interface AttackRule {
 	 * @param attackingTerritoryName
 	 */
 	ArrayList calculateAttackableTerritory(Map map, String attackingTerritoryName);
+
+
 
 }

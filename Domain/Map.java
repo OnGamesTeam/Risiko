@@ -33,11 +33,18 @@ public class Map {
 	 * 
 	 * @param attackingTerritoryName
 	 */
-	public Territory getTerritorybyName(String attackingTerritoryName) {
+	public Territory getTerritorybyName(String territoryName) {
 		/** IMPLEMENTAZIONE DI PROVA**/
 
-		throw new UnsupportedOperationException();
-
+		for (Continent continent:
+			 this.continents) {
+			for (Territory territory:
+				 continent.territories) {
+				if (territory.getName() == territoryName)
+					return territory;
+			}
+		}
+		return null;
 	}
 
 	/**

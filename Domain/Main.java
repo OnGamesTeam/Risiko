@@ -145,9 +145,12 @@ public class Main {
             while (validity == false){
             System.out.println("Territori dai quali puoi muovere un attacco: ");
             System.out.println(CPH.showAttackingTerritories(myPlayer));
-            System.out.println("Inserisci territorio dal quale vuoi muovere un attacco: ");
-            String atkTerritoryName = keyboard.next();
-            System.out.println("Territori attaccabili da " + atkTerritoryName + " : \n" + CPH.showAttackableTerritories(atkTerritoryName));
+            String atkTerritoryName;
+            do {
+                System.out.println("Inserisci territorio dal quale vuoi muovere un attacco: ");
+                atkTerritoryName = keyboard.next();
+                System.out.println("Territori attaccabili da " + atkTerritoryName + " : \n" + CPH.showAttackableTerritories(atkTerritoryName, myPlayer));
+            }while (CPH.showAttackableTerritories(atkTerritoryName, myPlayer).isEmpty());
             System.out.println("Inserisci territorio da attaccare: ");
             String defTerritoryName = keyboard.next();
             System.out.println("Inserisci numero di armate con il quale attaccare: ");

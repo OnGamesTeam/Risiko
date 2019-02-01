@@ -42,10 +42,11 @@ public class CombatPhaseHandler {
 	 * 
 	 * @param attackingTerritoryName
 	 */
-	public ArrayList<Territory> showAttackableTerritories(String attackingTerritoryName) {
-		//Occorre inserire il controllo sul giocatore: attackingTerritory DEVE appartenere
-		//al giocatore di turno
-	    return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
+	public ArrayList<Territory> showAttackableTerritories(String attackingTerritoryName, String playerID) {
+		//nel caso potrebbe essere utile indicare il motivo per cui un territorio non ha territori attaccabili vicini
+		if (playerID.equals(this.map.getTerritorybyName(attackingTerritoryName).getOwner().getID()))
+	    	return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
+		return new ArrayList<>();
     }
 
 	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber, String currentPlayer)

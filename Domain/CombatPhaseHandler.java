@@ -82,7 +82,7 @@ public class CombatPhaseHandler {
         	do {
 				armiesToMove = this.askArmiesNumberToMove();
 			}
-        	while (this.atkRule.chekArmiesToMove(attack.getAttackingTerritory().getArmies(), attack.getAttackingArmiesNumber(),armiesToMove));
+        	while (!this.atkRule.checkArmiesToMove(attack.getAttackingTerritory().getArmies(), attack.getAttackingArmiesNumber(),armiesToMove));
         	this.atkRule.updateMapConquered(attack, armiesToMove);
 		}
         else this.atkRule.updateMapNotConquered(attack);

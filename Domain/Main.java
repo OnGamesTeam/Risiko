@@ -158,7 +158,7 @@ public class Main {
                 CPH.setDefendingArmiesNumber(defArmies);
             }
             System.out.println("Il difensore ha utilizzato "+defArmies+" armate");
-            System.out.println(CPH.calculateAttackResult());
+            CPH.calculateAttackResult();
         }
     }
 }

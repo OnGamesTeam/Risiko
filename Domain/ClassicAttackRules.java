@@ -46,15 +46,10 @@ public class ClassicAttackRules implements AttackRule {
 		currentResult.setConqueredDefendingTerritory(conquered);
 		// collego il risultato all'attacco corrente
 		currentAttack.setAttackResult(currentResult);
-
-
-		this.updateMap(currentAttack);
 	}
 
 	@Override
-	public void updateMap(Attack currentAttack){
-		Scanner keyboard = new Scanner(System.in);
-
+	public void updateMapNotConquered(Attack currentAttack){
 		Territory attackingTerritory = currentAttack.getAttackingTerritory();
 		Territory defendingTerritory = currentAttack.getDefendingTerritory();
 
@@ -66,35 +61,29 @@ public class ClassicAttackRules implements AttackRule {
 		int old_armies_in_defending_territory = defendingTerritory.getArmies();
 		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmy();
 
-		// if che controlla la conquista di un territorio
-		if (currentAttack.getResult().getConqueredDefendingTerritory()){
+		attackingTerritory.setArmies(new_armies_in_attacking_territory);
+		defendingTerritory.setArmies(new_armies_in_defending_territory);
+	}
 
-			int moved_armies = 0;
-			//setta il territorio in difesa come posseduto dal giocatore attaccante
-			defendingTerritory.setOwner(attackingTerritory.getOwner());
+	@Override
+	public void updateMapConquered(Attack currentAttack, int armiesToMove){
+		Territory attackingTerritory = currentAttack.getAttackingTerritory();
+		Territory defendingTerritory = currentAttack.getDefendingTerritory();
 
-			//si aspetta che l'attaccante dichiari quante armate vuole spostare
-			while ( !(moved_armies >= currentAttack.getAttackingArmiesNumber() && moved_armies < new_armies_in_attacking_territory)) {
-				System.out.print("Hai conquistato" + currentAttack.getDefendingTerritory().getName() + ", quante armate vuoi spostare?");
-				moved_armies = keyboard.nextInt();
-			}
+		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI ATTACCO
+		int old_armies_in_attacking_territory = attackingTerritory.getArmies();
+		int new_armies_in_attacking_territory = old_armies_in_attacking_territory - currentAttack.getResult().getLostAttackingArmy();
 
-			//spostamento delle armate dal territorio attaccante a quello conquistato
-			defendingTerritory.setArmies(moved_armies);
-			attackingTerritory.setArmies(new_armies_in_attacking_territory-moved_armies);
+		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI DIFESA
+		int old_armies_in_defending_territory = defendingTerritory.getArmies();
+		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmy();
 
-			System.out.println("ora in " + attackingTerritory.getName() + " ci sono " + attackingTerritory.getArmies() + " armate");
-			System.out.println("e in " + defendingTerritory.getName() + " ci sono " + defendingTerritory.getArmies() + " armate");
-		}
+		//VIENE CAMBIATO L'OWNER DEL TERRITORIO CONQUISTATO
+		defendingTerritory.setOwner(attackingTerritory.getOwner());
 
-		else {
-			//aggiornamento delle armate senza la conquista
-			attackingTerritory.setArmies(new_armies_in_attacking_territory);
-			defendingTerritory.setArmies(new_armies_in_defending_territory);
-
-			System.out.println("ora in " + attackingTerritory.getName() + " ci sono " + attackingTerritory.getArmies() + " armate");
-			System.out.println("e in " + defendingTerritory.getName() + " ci sono " + defendingTerritory.getArmies() + " armate");
-		}
+		//VENGONO SPOSTATE LE ARMATE DAL TERRITORIO DI ATTACCO A QUELLO DI DIFESA
+		defendingTerritory.setArmies(armiesToMove);
+		attackingTerritory.setArmies(new_armies_in_attacking_territory-armiesToMove);
 	}
 
 	/**

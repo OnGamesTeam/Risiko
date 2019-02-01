@@ -12,7 +12,9 @@ public interface AttackRule {
 	 *
 	 * @param currentAttack
 	 */
-	void updateMap(Attack currentAttack);
+	void updateMapNotConquered(Attack currentAttack);
+
+	void updateMapConquered(Attack currentAttack, int armiesToMove);
 
 
 	/**

@@ -65,15 +65,33 @@ public class CombatPhaseHandler {
 	    attack.setDefendingArmiesNumber(DefendingArmiesNumber);
 	    return true;
     }
-	public Result calculateAttackResult() {
+
+
+	public void calculateAttackResult() {
         CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
         Attack attack = currentCPhase.getCurrentAttack();
-        return attack.getAttackResult(this.atkRule);
+        Result result = attack.getAttackResult(this.atkRule);
+        this.showResult(result);
+        if(result.getConqueredDefendingTerritory()){
+        	int armiesToMove = this.askArmiesNumberToMove();
+        	this.atkRule.updateMapConquered(attack, armiesToMove);
+		}
+        else this.atkRule.updateMapNotConquered(attack);
     }
 
 	public boolean endCombatPhase() {
 		// TODO - implement CombatPhaseHandler.endCombatPhase
 		throw new UnsupportedOperationException();
+	}
+
+	public void showResult(Result result){
+		System.out.println(result);
+	}
+
+	public int askArmiesNumberToMove(){
+		System.out.println("Territorio conquistato! Quante armate vuoi spostare?");
+		Scanner keyboard = new Scanner(System.in);
+		return keyboard.nextInt();
 	}
 
 

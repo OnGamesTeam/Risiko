@@ -94,7 +94,7 @@ public class Main {
 
         Continent eu = new Continent("Europa", euterritories);
 
-        //Players' creation colour assign
+        //Players' creation and colour assignment
         for (String player :
                 playerNames) {
             int indColour = rand.nextInt(colours.size());

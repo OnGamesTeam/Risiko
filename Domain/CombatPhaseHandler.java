@@ -43,6 +43,8 @@ public class CombatPhaseHandler {
 	 * @param attackingTerritoryName
 	 */
 	public ArrayList<Territory> showAttackableTerritories(String attackingTerritoryName) {
+		//Occorre inserire il controllo sul giocatore: attackingTerritory DEVE appartenere
+		//al giocatore di turno
 	    return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
     }
 

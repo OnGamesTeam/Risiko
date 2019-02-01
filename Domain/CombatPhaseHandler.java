@@ -62,6 +62,11 @@ public class CombatPhaseHandler {
 	public boolean setDefendingArmiesNumber(int DefendingArmiesNumber){
 	    CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
 	    Attack attack = currentCPhase.getCurrentAttack();
+	    //
+	    if (!(this.atkRule.checkDefendingArmies(attack.getDefendingTerritory().getArmies(),
+				DefendingArmiesNumber)))
+	    	return false;
+
 	    attack.setDefendingArmiesNumber(DefendingArmiesNumber);
 	    return true;
     }

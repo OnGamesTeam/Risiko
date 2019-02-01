@@ -124,6 +124,7 @@ public class Main {
             }
         });
 
+        //Inizio Gioco
         boolean play = true;
         Turn currentTurn = new Turn ();
         ClassicAttackRules atkRules = new ClassicAttackRules();
@@ -150,13 +151,11 @@ public class Main {
             int atkArmies = keyboard.nextInt();
             CPH.makeAttack(atkTerritoryName, defTerritoryName, atkArmies);
             int defArmies = map.getTerritorybyName(defTerritoryName).getArmies();
-            if(defArmies<=3) {
-                CPH.setDefendingArmiesNumber(defArmies);
+            while(!(CPH.setDefendingArmiesNumber(defArmies))) {
+                System.out.print("inserisci un numero valido\n");
+                defArmies = keyboard.nextInt();
             }
-            else {
-                defArmies = 3;
-                CPH.setDefendingArmiesNumber(defArmies);
-            }
+
             System.out.println("Il difensore ha utilizzato "+defArmies+" armate");
             System.out.println(CPH.calculateAttackResult());
         }

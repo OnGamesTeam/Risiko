@@ -73,12 +73,16 @@ public class CombatPhaseHandler {
 
 
 	public void calculateAttackResult() {
+		int armiesToMove = 0;
         CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
         Attack attack = currentCPhase.getCurrentAttack();
         Result result = attack.getAttackResult(this.atkRule);
         this.showResult(result);
         if(result.getConqueredDefendingTerritory()){
-        	int armiesToMove = this.askArmiesNumberToMove();
+        	do {
+				armiesToMove = this.askArmiesNumberToMove();
+			}
+        	while (this.atkRule.chekArmiesToMove(attack.getAttackingTerritory().getArmies(), attack.getAttackingArmiesNumber(),armiesToMove));
         	this.atkRule.updateMapConquered(attack, armiesToMove);
 		}
         else this.atkRule.updateMapNotConquered(attack);

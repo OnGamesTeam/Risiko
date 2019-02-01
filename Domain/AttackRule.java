@@ -40,4 +40,5 @@ public interface AttackRule {
 	 */
 	boolean checkDefendingArmies(int armiesOnTerritory, int defendingArmies);
 
+	boolean chekArmiesToMove(int armiesOnTerritory, int attackArmies, int armiesToMove);
 }

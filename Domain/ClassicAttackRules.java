@@ -133,4 +133,9 @@ public class ClassicAttackRules implements AttackRule {
 		return true;
 	}
 
+	public boolean chekArmiesToMove(int armiesOnTerritory, int attackArmies, int armiesToMove){
+		if(armiesToMove >= attackArmies && armiesToMove < armiesOnTerritory) return true;
+		else return false;
+	}
+
 }

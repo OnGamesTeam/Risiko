@@ -122,4 +122,15 @@ public class ClassicAttackRules implements AttackRule {
        return attackableTerritories;
 	}
 
+	public boolean checkDefendingArmies(int armiesOnTerritory, int defendingArmies)
+	{
+		if (defendingArmies > 3)
+			return false;
+
+		if (armiesOnTerritory < defendingArmies)
+			return false;
+
+		return true;
+	}
+
 }

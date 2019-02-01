@@ -32,6 +32,12 @@ public interface AttackRule {
 	 */
 	ArrayList calculateAttackableTerritory(Map map, String attackingTerritoryName);
 
-
+	/**
+	 *
+	 * @param armiesOnTerritory
+	 * @param defendingArmies
+	 * @return
+	 */
+	boolean checkDefendingArmies(int armiesOnTerritory, int defendingArmies);
 
 }

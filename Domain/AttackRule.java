@@ -25,8 +25,7 @@ public interface AttackRule {
 	ArrayList calculateAttackingTerritory(Map map, String playerID);
 
 	/**
-	 * 
-	 * @param parameter
+	 *
 	 * @param map
 	 * @param attackingTerritoryName
 	 */
@@ -41,4 +40,10 @@ public interface AttackRule {
 	boolean checkDefendingArmies(int armiesOnTerritory, int defendingArmies);
 
 	boolean checkArmiesToMove(int armiesOnTerritory, int attackArmies, int armiesToMove);
+
+	boolean checkTerritoriesValidity(Territory attackingTerritory, Territory defendingTerritory, String attacckingPlayerId);
+
+	boolean checkAttackingArmiesValidity(Territory attackingTerritory, int attackingArmies);
+
+
 }

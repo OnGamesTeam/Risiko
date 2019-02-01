@@ -46,12 +46,28 @@ public class CombatPhaseHandler {
 	    return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
     }
 
-	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber)
+	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber, String currentPlayer)
 	{
 		//TODO
 
         Territory atkTerritory = this.map.getTerritorybyName(attackingTerritoryName);
         Territory defTerritory = this.map.getTerritorybyName(defendingTerritoryName);
+
+        boolean territoriesValidity = atkRule.checkTerritoriesValidity(atkTerritory, defTerritory, currentPlayer);
+
+        if (territoriesValidity == false){
+
+			System.out.println("I territori d'attacco non sono corretti. ");
+			return false;
+		}
+
+		boolean armiesValidity = atkRule.checkAttackingArmiesValidity(atkTerritory, attackingArmyNumber);
+
+		if (armiesValidity == false){
+			System.out.println("Non puoi attaccare con questo numero di armate! ");
+			return false;
+		}
+
         CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
         currentCPhase.makeNewAttack(atkTerritory,defTerritory,attackingArmyNumber);
 

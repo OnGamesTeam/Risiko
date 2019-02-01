@@ -141,6 +141,8 @@ public class Main {
         while(CPH.showAttackingTerritories(myPlayer).size()>0) {
             System.out.println("I tuoi territori: ");
             System.out.println(map.getPlayerTerritories(myPlayer));
+            boolean validity = false;
+            while (validity == false){
             System.out.println("Territori dai quali puoi muovere un attacco: ");
             System.out.println(CPH.showAttackingTerritories(myPlayer));
             System.out.println("Inserisci territorio dal quale vuoi muovere un attacco: ");
@@ -150,7 +152,8 @@ public class Main {
             String defTerritoryName = keyboard.next();
             System.out.println("Inserisci numero di armate con il quale attaccare: ");
             int atkArmies = keyboard.nextInt();
-            CPH.makeAttack(atkTerritoryName, defTerritoryName, atkArmies);
+            validity = CPH.makeAttack(atkTerritoryName, defTerritoryName, atkArmies, myPlayer);
+            }
             int defArmies = rand.nextInt(6)+1;
             while(!(CPH.setDefendingArmiesNumber(defArmies))) {
                 System.out.print("inserisci un numero valido\n");

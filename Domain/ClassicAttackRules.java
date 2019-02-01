@@ -48,7 +48,7 @@ public class ClassicAttackRules implements AttackRule {
 		currentAttack.setAttackResult(currentResult);
 	}
 
-	@Override
+
 	public void updateMapNotConquered(Attack currentAttack){
 		Territory attackingTerritory = currentAttack.getAttackingTerritory();
 		Territory defendingTerritory = currentAttack.getDefendingTerritory();
@@ -65,7 +65,7 @@ public class ClassicAttackRules implements AttackRule {
 		defendingTerritory.setArmies(new_armies_in_defending_territory);
 	}
 
-	@Override
+
 	public void updateMapConquered(Attack currentAttack, int armiesToMove){
 		Territory attackingTerritory = currentAttack.getAttackingTerritory();
 		Territory defendingTerritory = currentAttack.getDefendingTerritory();
@@ -91,7 +91,7 @@ public class ClassicAttackRules implements AttackRule {
 	 * @param map
 	 * @param playerID
 	 */
-	@Override
+
 	public ArrayList calculateAttackingTerritory(Map map, String playerID) {
 		ArrayList<Territory> playerTerritory = map.getPlayerTerritories(playerID);
 		ArrayList<Territory> attackingTerritory = new ArrayList<Territory>();
@@ -109,6 +109,7 @@ public class ClassicAttackRules implements AttackRule {
 	 * @param map
 	 * @param attackingTerritoryName
 	 */
+
 	public ArrayList calculateAttackableTerritory(Map map, String attackingTerritoryName) {
 		Territory attackingTerritory= map.getTerritorybyName(attackingTerritoryName);
 		ArrayList<Territory> attackableTerritories = new ArrayList<Territory>();
@@ -138,4 +139,20 @@ public class ClassicAttackRules implements AttackRule {
 		else return false;
 	}
 
+
+	public boolean checkTerritoriesValidity(Territory attackingTerritory, Territory defendingTerritory, String attacckingPlayerId){
+		boolean validity = false;
+		if (attackingTerritory.getOwner().getID().equals(attacckingPlayerId) && attackingTerritory.getNeighbors().contains(defendingTerritory) && !(defendingTerritory.getOwner().getID().equals(attacckingPlayerId))){
+			validity = true;
+		}
+		return validity;
+	}
+
+	public boolean checkAttackingArmiesValidity(Territory attackingTerritory, int attackingArmies){
+		boolean validity = false;
+		if (attackingArmies <= 3 && attackingTerritory.getArmies()-attackingArmies >=1){
+			validity = true;
+		}
+		return validity;
+	}
 }

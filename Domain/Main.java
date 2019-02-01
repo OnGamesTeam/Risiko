@@ -3,10 +3,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import  java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         //CONFUGURATION
         ArrayList<String> colours = new ArrayList<String>();
@@ -150,10 +151,11 @@ public class Main {
             System.out.println("Inserisci numero di armate con il quale attaccare: ");
             int atkArmies = keyboard.nextInt();
             CPH.makeAttack(atkTerritoryName, defTerritoryName, atkArmies);
-            int defArmies = map.getTerritorybyName(defTerritoryName).getArmies();
+            int defArmies = rand.nextInt(6)+1;
             while(!(CPH.setDefendingArmiesNumber(defArmies))) {
                 System.out.print("inserisci un numero valido\n");
-                defArmies = keyboard.nextInt();
+                defArmies = rand.nextInt(6)+1;
+                TimeUnit.SECONDS.sleep(1);
             }
 
             System.out.println("Il difensore ha utilizzato "+defArmies+" armate");

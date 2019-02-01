@@ -92,18 +92,23 @@ public class CombatPhaseHandler {
 
 	public void calculateAttackResult() {
 		int armiesToMove = 0;
+		//prendo la fase corrente
         CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
+        //prendo l'attacco corrente
         Attack attack = currentCPhase.getCurrentAttack();
+        //calcolo il risultato
         Result result = attack.getAttackResult(this.atkRule);
+        //mostro il risultato
         this.showResult(result);
-        if(result.getConqueredDefendingTerritory()){
+        // il territorio è stato conquistato...
+        if(result.getConqueredDefendingTerritory()){ //
         	do {
-				armiesToMove = this.askArmiesNumberToMove();
+				armiesToMove = this.askArmiesNumberToMove(); //SI: chiedo all'attaccante quante armate vuole spostare dal territorio attaccante
 			}
-        	while (!this.atkRule.checkArmiesToMove(attack.getAttackingTerritory().getArmies(), attack.getAttackingArmiesNumber(),armiesToMove));
-        	this.atkRule.updateMapConquered(attack, armiesToMove);
+        	while (!this.atkRule.checkArmiesToMove(attack.getAttackingTerritory().getArmies(), attack.getAttackingArmiesNumber(),armiesToMove)); //controllo che possa spostare  tot armate
+        	this.atkRule.updateMapConquered(attack, armiesToMove); //aggiorno la mappa in seguito alla conquista
 		}
-        else this.atkRule.updateMapNotConquered(attack);
+        else this.atkRule.updateMapNotConquered(attack); //NO: aggiorno direttamente la mappa
     }
 
 	public boolean endCombatPhase() {

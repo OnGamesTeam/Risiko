@@ -1,10 +1,10 @@
 public class Attack {
-
-	private Territory attackingTerritory;
-	private Territory defendingTerritory;
+	
 	private int attackingArmiesNumber;
 	private int defendingArmiesNumber;
 	private Result attackResult;
+	private Territory attackingTerritory;
+	private Territory defendingTerritory;
 
 
 	public Result getResult() {
@@ -67,5 +67,9 @@ public class Attack {
 	@Override
 	public String toString() {
 		return "Atk: " + this.getAttackingTerritory() + " AtkArmies: " + this.getAttackingArmiesNumber() + " Def: " + this.getDefendingTerritory() + " DefArmies: " + this.getDefendingArmiesNumber() + " Result: " + this.getResult();
+	}
+
+	public Result getAttackResult() {
+		return this.attackResult;
 	}
 }

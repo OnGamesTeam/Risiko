@@ -4,6 +4,7 @@ public class Continent {
 
 	private ArrayList<Territory> territories;
 	private String name;
+	Collection<Territory> territory;
 
 	//costruttore da modificare
 	public Continent(String continentName, ArrayList<Territory> continentTerritories){
@@ -40,6 +41,11 @@ public class Continent {
 	@Override
 	public String toString() {
 		return "Name: "+ this.name+" Territories: "+territories;
+	}
+
+	public ArrayList getTerritories() {
+		// TODO - implement Continent.getTerritories
+		throw new UnsupportedOperationException();
 	}
 }
 

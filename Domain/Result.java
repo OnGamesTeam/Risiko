@@ -72,4 +72,32 @@ public class Result {
 	public String toString() {
 		return "AtkDiceValue: "+this.getAtkDiceValue() + " DefDiceValue: "+this.getDefDiceValue()+ " lostAtk: "+this.getLostAttackingArmy() + " lostDef: "+ this.getLostDefendingArmy() + " Conquered: "+this.getConqueredDefendingTerritory();
 	}
+
+	public ArrayList getAtkDiceValue() {
+		// TODO - implement Result.getAtkDiceValue
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param atkDiceValue
+	 */
+	public void setAtkDiceValue(ArrayList atkDiceValue) {
+		// TODO - implement Result.setAtkDiceValue
+		throw new UnsupportedOperationException();
+	}
+
+	public ArrayList getDefDiceValue() {
+		// TODO - implement Result.getDefDiceValue
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param defDiceValue
+	 */
+	public void setDefDiceValue(ArrayList defDiceValue) {
+		// TODO - implement Result.setDefDiceValue
+		throw new UnsupportedOperationException();
+	}
 }

@@ -3,6 +3,7 @@ public class Player {
 	private String ID;
 	private String nickname;
 	private String colour;
+	DiceShaker diceShaker;
 
 	public Player(String playerID, String nickname, String colour){
 		this.ID = playerID;
@@ -49,5 +50,4 @@ public class Player {
 
 		this.colour = colour;
 	}
-
 }

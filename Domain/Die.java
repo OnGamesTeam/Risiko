@@ -13,4 +13,9 @@ public class Die {
 		return this.faceValue;
 	}
 
+	public void getFaceValue() {
+		// TODO - implement Die.getFaceValue
+		throw new UnsupportedOperationException();
+	}
+
 }

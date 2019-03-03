@@ -45,5 +45,19 @@ public interface AttackRule {
 
 	boolean checkAttackingArmiesValidity(Territory attackingTerritory, int attackingArmies);
 
+	/**
+	 * 
+	 * @param map
+	 * @param playerID
+	 */
+	ArrayList calculateAttackingTerritory(Map map, string playerID);
+
+	/**
+	 * 
+	 * @param map
+	 * @param attackingTerritoryName
+	 */
+	ArrayList calculateAttackableTerritory(Map map, string attackingTerritoryName);
+
 
 }

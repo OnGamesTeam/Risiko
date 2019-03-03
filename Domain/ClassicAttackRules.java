@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Scanner;
 
 public class ClassicAttackRules implements AttackRule {
 
@@ -11,6 +9,7 @@ public class ClassicAttackRules implements AttackRule {
 	 */
 	@Override
 	public void calculateAttackResult(Attack currentAttack) {
+
 		// dichiarazione di variabili
 		Player attacker = currentAttack.getAttackingTerritory().getOwner();
 		Player defender = currentAttack.getDefendingTerritory().getOwner();
@@ -19,6 +18,8 @@ public class ClassicAttackRules implements AttackRule {
 		boolean conquered = false;
 		int totArmiesDefendingTerritory = currentAttack.getDefendingTerritory().getArmies();
 		// fine dichiarazione
+
+		//calcolo del risultato
 		DiceShaker diceShaker = DiceShaker.getInstance(); //ottengo l'istanza del diceshaker
 		diceShaker.setDiceNumber(currentAttack.getAttackingArmiesNumber()); // setto il numero di dadi che l'attaccante deve lanciare
 		diceShaker.rollDice(); // lancio i dadi di attacco
@@ -37,6 +38,8 @@ public class ClassicAttackRules implements AttackRule {
 		if(totArmiesDefendingTerritory - lostDefenderArmies == 0){ // se il numero totale di armate sul terriorio difensore - quelle perse è uguale a 0...
 			conquered = true; // ... c'è stata la conquista
 		}
+		//fine calcolo del risultato
+
 		// costruzione del risultato
 		Result currentResult = new Result();
 		currentResult.setDefDiceValue(defenderDice);
@@ -85,6 +88,7 @@ public class ClassicAttackRules implements AttackRule {
 		defendingTerritory.setArmies(armiesToMove);
 		attackingTerritory.setArmies(new_armies_in_attacking_territory-armiesToMove);
 	}
+
 
 	/**
 	 * 
@@ -154,5 +158,25 @@ public class ClassicAttackRules implements AttackRule {
 			validity = true;
 		}
 		return validity;
+	}
+
+	/**
+	 * 
+	 * @param map
+	 * @param playerID
+	 */
+	public ArrayList calculateAttackingTerritory(Map map, string playerID) {
+		// TODO - implement ClassicAttackRules.calculateAttackingTerritory
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param map
+	 * @param attackingTerritoryName
+	 */
+	public ArrayList calculateAttackableTerritory(Map map, string attackingTerritoryName) {
+		// TODO - implement ClassicAttackRules.calculateAttackableTerritory
+		throw new UnsupportedOperationException();
 	}
 }

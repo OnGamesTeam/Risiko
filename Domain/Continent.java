@@ -4,7 +4,6 @@ public class Continent {
 
 	private ArrayList<Territory> territories;
 	private String name;
-	Collection<Territory> territory;
 
 	//costruttore da modificare
 	public Continent(String continentName, ArrayList<Territory> continentTerritories){
@@ -34,8 +33,7 @@ public class Continent {
 	 * @param territories
 	 */
 	public void setTerritories(ArrayList territories) {
-		// TODO - implement Continent.setTerritories
-		throw new UnsupportedOperationException();
+		this.territories = territories;
 	}
 
 	@Override

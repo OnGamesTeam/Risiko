@@ -127,34 +127,4 @@ public class CombatPhaseHandler {
 		return keyboard.nextInt();
 	}
 
-	/**
-	 * 
-	 * @param playerID
-	 */
-	public ArrayList showAttackingTerritories(string playerID) {
-		// TODO - implement CombatPhaseHandler.showAttackingTerritories
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param attackingTerritoryName
-	 */
-	public ArrayList showAttackableTerritories(string attackingTerritoryName) {
-		// TODO - implement CombatPhaseHandler.showAttackableTerritories
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param attackingTerritoryName
-	 * @param defendingTerritoryName
-	 * @param attackingArmyNumber
-	 */
-	public boolean makeAttack(String attackingTerritoryName, String defendingTerritoryName, int attackingArmyNumber) {
-		// TODO - implement CombatPhaseHandler.makeAttack
-		throw new UnsupportedOperationException();
-	}
-
-
 }

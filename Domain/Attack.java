@@ -1,5 +1,5 @@
 public class Attack {
-	
+
 	private int attackingArmiesNumber;
 	private int defendingArmiesNumber;
 	private Result attackResult;

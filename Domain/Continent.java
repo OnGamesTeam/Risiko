@@ -43,9 +43,5 @@ public class Continent {
 		return "Name: "+ this.name+" Territories: "+territories;
 	}
 
-	public ArrayList getTerritories() {
-		// TODO - implement Continent.getTerritories
-		throw new UnsupportedOperationException();
-	}
 }
 

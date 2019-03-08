@@ -44,8 +44,8 @@ public class ClassicAttackRules implements AttackRule {
 		Result currentResult = new Result();
 		currentResult.setDefDiceValue(defenderDice);
 		currentResult.setAtkDiceValue(attackerDice);
-		currentResult.setLostAttackingArmy(lostAttackerArmies);
-		currentResult.setLostDefendingArmy(lostDefenderArmies);
+		currentResult.setLostAttackingArmies(lostAttackerArmies);
+		currentResult.setLostDefendingArmies(lostDefenderArmies);
 		currentResult.setConqueredDefendingTerritory(conquered);
 		// collego il risultato all'attacco corrente
 		currentAttack.setAttackResult(currentResult);
@@ -58,11 +58,11 @@ public class ClassicAttackRules implements AttackRule {
 
 		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI ATTACCO
 		int old_armies_in_attacking_territory = attackingTerritory.getTerritoryStatus().getArmies();
-		int new_armies_in_attacking_territory = old_armies_in_attacking_territory - currentAttack.getResult().getLostAttackingArmy();
+		int new_armies_in_attacking_territory = old_armies_in_attacking_territory - currentAttack.getResult().getLostAttackingArmies();
 
 		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI DIFESA
 		int old_armies_in_defending_territory = defendingTerritory.getTerritoryStatus().getArmies();
-		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmy();
+		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmies();
 
 		attackingTerritory.getTerritoryStatus().setArmies(new_armies_in_attacking_territory);
 		defendingTerritory.getTerritoryStatus().setArmies(new_armies_in_defending_territory);
@@ -75,11 +75,11 @@ public class ClassicAttackRules implements AttackRule {
 
 		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI ATTACCO
 		int old_armies_in_attacking_territory = attackingTerritory.getTerritoryStatus().getArmies();
-		int new_armies_in_attacking_territory = old_armies_in_attacking_territory - currentAttack.getResult().getLostAttackingArmy();
+		int new_armies_in_attacking_territory = old_armies_in_attacking_territory - currentAttack.getResult().getLostAttackingArmies();
 
 		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI DIFESA
 		int old_armies_in_defending_territory = defendingTerritory.getTerritoryStatus().getArmies();
-		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmy();
+		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmies();
 
 		//VIENE CAMBIATO L'OWNER DEL TERRITORIO CONQUISTATO
 		defendingTerritory.getTerritoryStatus().setOwner(attackingTerritory.getTerritoryStatus().getOwner());

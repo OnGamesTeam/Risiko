@@ -14,7 +14,7 @@ public class ClassicAttackRules implements AttackRule {
 		Player attacker = currentAttack.getAttackingTerritory().getTerritoryStatus().getOwner();
 		Player defender = currentAttack.getDefendingTerritory().getTerritoryStatus().getOwner();
 		int lostDefenderArmies = 0;
-		int lostAttackerArmiers = 0;
+		int lostAttackerArmies = 0;
 		boolean conquered = false;
 		int totArmiesDefendingTerritory = currentAttack.getDefendingTerritory().getTerritoryStatus().getArmies();
 		// fine dichiarazione
@@ -33,7 +33,7 @@ public class ClassicAttackRules implements AttackRule {
 			if(attackerDice.get(i)>defenderDice.get(i)){ // se l'i-esimo dado di attacco e maggiore dell'i-esimo dado di difesa...
 				lostDefenderArmies++; // ... incremento il numero di armate perse dal difensore
 			}
-			else lostAttackerArmiers++; // ... altrimenti incremento il numero di armate perse dall'attaccante
+			else lostAttackerArmies++; // ... altrimenti incremento il numero di armate perse dall'attaccante
 		}
 		if(totArmiesDefendingTerritory - lostDefenderArmies == 0){ // se il numero totale di armate sul terriorio difensore - quelle perse è uguale a 0...
 			conquered = true; // ... c'è stata la conquista
@@ -44,7 +44,7 @@ public class ClassicAttackRules implements AttackRule {
 		Result currentResult = new Result();
 		currentResult.setDefDiceValue(defenderDice);
 		currentResult.setAtkDiceValue(attackerDice);
-		currentResult.setLostAttackingArmy(lostAttackerArmiers);
+		currentResult.setLostAttackingArmy(lostAttackerArmies);
 		currentResult.setLostDefendingArmy(lostDefenderArmies);
 		currentResult.setConqueredDefendingTerritory(conquered);
 		// collego il risultato all'attacco corrente

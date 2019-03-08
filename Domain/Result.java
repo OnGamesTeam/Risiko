@@ -1,13 +1,43 @@
+import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Table (name = "Result")
 public class Result {
 
+	/*
+	da testare, POTREBBERO ESSERCI PROBLEMI
+	 */
+	@OneToMany
+	@JoinColumn(name = "Die")
+	@Where(clause = "type = 'Attacker'")
 	private ArrayList<Integer> atkDiceValue;
+
+	/*
+	da testare, POTREBBERO ESSERCI PROBLEMI
+	 */
+	@OneToMany
+	@JoinColumn(name = "Die")
+	@Where(clause = "type = 'Defender'")
 	private ArrayList<Integer> defDiceValue;
-	private int lostAttackingArmy;
-	private int lostDefendingArmy;
+
+
+	@Column (name = "lostAttackingArmies")
+	private int lostAttackingArmies;
+
+	@Column (name = "lostDefendingArmies")
+	private int lostDefendingArmies;
+
+	@Column (name = "conqueredDefendingTerritory")
 	private boolean conqueredDefendingTerritory;
 
+
+	/**
+	 *
+	 * @return
+	 */
 	public ArrayList getAtkDiceValue() {
 		return this.atkDiceValue;
 	}
@@ -32,28 +62,28 @@ public class Result {
 		this.defDiceValue = defDiceValue;
 	}
 
-	public int getLostAttackingArmy() {
-		return this.lostAttackingArmy;
+	public int getLostAttackingArmies() {
+		return this.lostAttackingArmies;
 	}
 
 	/**
 	 * 
-	 * @param lostAttackingArmy
+	 * @param lostAttackingArmies
 	 */
-	public void setLostAttackingArmy(int lostAttackingArmy) {
-		this.lostAttackingArmy = lostAttackingArmy;
+	public void setLostAttackingArmies(int lostAttackingArmies) {
+		this.lostAttackingArmies = lostAttackingArmies;
 	}
 
-	public int getLostDefendingArmy() {
-		return this.lostDefendingArmy;
+	public int getLostDefendingArmies() {
+		return this.lostDefendingArmies;
 	}
 
 	/**
 	 * 
-	 * @param lostDefendingArmy
+	 * @param lostDefendingArmies
 	 */
-	public void setLostDefendingArmy(int lostDefendingArmy) {
-		this.lostDefendingArmy = lostDefendingArmy;
+	public void setLostDefendingArmies(int lostDefendingArmies) {
+		this.lostDefendingArmies = lostDefendingArmies;
 	}
 
 	public boolean getConqueredDefendingTerritory() {
@@ -70,7 +100,7 @@ public class Result {
 
 	@Override
 	public String toString() {
-		return "AtkDiceValue: "+this.getAtkDiceValue() + " DefDiceValue: "+this.getDefDiceValue()+ " lostAtk: "+this.getLostAttackingArmy() + " lostDef: "+ this.getLostDefendingArmy() + " Conquered: "+this.getConqueredDefendingTerritory();
+		return "AtkDiceValue: "+this.getAtkDiceValue() + " DefDiceValue: "+this.getDefDiceValue()+ " lostAtk: "+this.getLostAttackingArmies() + " lostDef: "+ this.getLostDefendingArmies() + " Conquered: "+this.getConqueredDefendingTerritory();
 	}
 
 }

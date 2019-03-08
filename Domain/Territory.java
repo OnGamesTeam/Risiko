@@ -3,8 +3,7 @@ import java.util.ArrayList;
 public class Territory {
 
 	private String name;
-	private int armies;
-	private Player owner;
+	private TerritoryStatus territoryStatus;
 	private ArrayList<Territory> neighbors;
 
 	/**
@@ -15,6 +14,7 @@ public class Territory {
 	//costruttore da modificare
 	public Territory(String territoryName){
 		this.name = territoryName;
+		this.territoryStatus = new TerritoryStatus();
 		this.neighbors = new ArrayList<Territory>();
 	}
 
@@ -43,28 +43,12 @@ public class Territory {
 		this.name = name;
 	}
 
-	public int getArmies() {
-		return this.armies;
+	public TerritoryStatus getTerritoryStatus() {
+		return territoryStatus;
 	}
 
-	/**
-	 * 
-	 * @param armies
-	 */
-	public void setArmies(int armies) {
-		this.armies = armies;
-	}
-
-	public Player getOwner() {
-		return this.owner;
-	}
-
-	/**
-	 * 
-	 * @param owner
-	 */
-	public void setOwner(Player owner) {
-		this.owner = owner;
+	public void setTerritoryStatus(TerritoryStatus territoryStatus) {
+		this.territoryStatus = territoryStatus;
 	}
 
 	public ArrayList<Territory> getNeighbors(){
@@ -73,6 +57,6 @@ public class Territory {
 
 	@Override
 	public String toString() {
-		return "Name: "+this.getName() + " Armies: "+this.getArmies();
+		return "name='" + name + '\'' + ", " + territoryStatus;
 	}
 }

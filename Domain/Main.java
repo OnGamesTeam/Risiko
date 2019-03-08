@@ -87,7 +87,7 @@ public class Main {
         //Territories' creation
         territoryNamesNeighbors.forEach((territoryName, neighs) -> {
             Territory territory = new Territory(territoryName);
-            territory.setArmies(4);
+            territory.getTerritoryStatus().setArmies(4);
             euterritories.add(territory);
         });
 
@@ -106,7 +106,7 @@ public class Main {
         int i = 0;
         for (Territory territory :
                 eu.getTerritories()) {
-            territory.setOwner(players.get(i));
+            territory.getTerritoryStatus().setOwner(players.get(i));
             i = (i + 1) % players.size();
         }
 

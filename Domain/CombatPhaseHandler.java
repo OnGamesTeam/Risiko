@@ -44,7 +44,7 @@ public class CombatPhaseHandler {
 	 */
 	public ArrayList<Territory> showAttackableTerritories(String attackingTerritoryName, String playerID) {
 		//nel caso potrebbe essere utile indicare il motivo per cui un territorio non ha territori attaccabili vicini
-		if (playerID.equals(this.map.getTerritorybyName(attackingTerritoryName).getOwner().getID()))
+		if (playerID.equals(this.map.getTerritorybyName(attackingTerritoryName).getTerritoryStatus().getOwner().getID()))
 	    	return this.map.getAttackableTerritories(attackingTerritoryName, this.atkRule);
 		return new ArrayList<>();
     }
@@ -82,7 +82,7 @@ public class CombatPhaseHandler {
 	    CombatPhase currentCPhase = this.currentTurn.getCombatPhase();
 	    Attack attack = currentCPhase.getCurrentAttack();
 	    //
-	    if (!(this.atkRule.checkDefendingArmies(attack.getDefendingTerritory().getArmies(),
+	    if (!(this.atkRule.checkDefendingArmies(attack.getDefendingTerritory().getTerritoryStatus().getArmies(),
 				DefendingArmiesNumber)))
 	    	return false;
 
@@ -106,7 +106,7 @@ public class CombatPhaseHandler {
         	do {
 				armiesToMove = this.askArmiesNumberToMove(); //SI: chiedo all'attaccante quante armate vuole spostare dal territorio attaccante
 			}
-        	while (!this.atkRule.checkArmiesToMove(attack.getAttackingTerritory().getArmies(), attack.getAttackingArmiesNumber(),armiesToMove)); //controllo che possa spostare  tot armate
+        	while (!this.atkRule.checkArmiesToMove(attack.getAttackingTerritory().getTerritoryStatus().getArmies(), attack.getAttackingArmiesNumber(),armiesToMove)); //controllo che possa spostare  tot armate
         	this.atkRule.updateMapConquered(attack, armiesToMove); //aggiorno la mappa in seguito alla conquista
 		}
         else this.atkRule.updateMapNotConquered(attack); //NO: aggiorno direttamente la mappa

@@ -11,12 +11,12 @@ public class ClassicAttackRules implements AttackRule {
 	public void calculateAttackResult(Attack currentAttack) {
 
 		// dichiarazione di variabili
-		Player attacker = currentAttack.getAttackingTerritory().getOwner();
-		Player defender = currentAttack.getDefendingTerritory().getOwner();
+		Player attacker = currentAttack.getAttackingTerritory().getTerritoryStatus().getOwner();
+		Player defender = currentAttack.getDefendingTerritory().getTerritoryStatus().getOwner();
 		int lostDefenderArmies = 0;
 		int lostAttackerArmiers = 0;
 		boolean conquered = false;
-		int totArmiesDefendingTerritory = currentAttack.getDefendingTerritory().getArmies();
+		int totArmiesDefendingTerritory = currentAttack.getDefendingTerritory().getTerritoryStatus().getArmies();
 		// fine dichiarazione
 
 		//calcolo del risultato
@@ -57,15 +57,15 @@ public class ClassicAttackRules implements AttackRule {
 		Territory defendingTerritory = currentAttack.getDefendingTerritory();
 
 		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI ATTACCO
-		int old_armies_in_attacking_territory = attackingTerritory.getArmies();
+		int old_armies_in_attacking_territory = attackingTerritory.getTerritoryStatus().getArmies();
 		int new_armies_in_attacking_territory = old_armies_in_attacking_territory - currentAttack.getResult().getLostAttackingArmy();
 
 		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI DIFESA
-		int old_armies_in_defending_territory = defendingTerritory.getArmies();
+		int old_armies_in_defending_territory = defendingTerritory.getTerritoryStatus().getArmies();
 		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmy();
 
-		attackingTerritory.setArmies(new_armies_in_attacking_territory);
-		defendingTerritory.setArmies(new_armies_in_defending_territory);
+		attackingTerritory.getTerritoryStatus().setArmies(new_armies_in_attacking_territory);
+		defendingTerritory.getTerritoryStatus().setArmies(new_armies_in_defending_territory);
 	}
 
 
@@ -74,19 +74,19 @@ public class ClassicAttackRules implements AttackRule {
 		Territory defendingTerritory = currentAttack.getDefendingTerritory();
 
 		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI ATTACCO
-		int old_armies_in_attacking_territory = attackingTerritory.getArmies();
+		int old_armies_in_attacking_territory = attackingTerritory.getTerritoryStatus().getArmies();
 		int new_armies_in_attacking_territory = old_armies_in_attacking_territory - currentAttack.getResult().getLostAttackingArmy();
 
 		//CALCOLO DELLE NUOVE ARMATE NEL TERRITORIO DI DIFESA
-		int old_armies_in_defending_territory = defendingTerritory.getArmies();
+		int old_armies_in_defending_territory = defendingTerritory.getTerritoryStatus().getArmies();
 		int new_armies_in_defending_territory = old_armies_in_defending_territory - currentAttack.getResult().getLostDefendingArmy();
 
 		//VIENE CAMBIATO L'OWNER DEL TERRITORIO CONQUISTATO
-		defendingTerritory.setOwner(attackingTerritory.getOwner());
+		defendingTerritory.getTerritoryStatus().setOwner(attackingTerritory.getTerritoryStatus().getOwner());
 
 		//VENGONO SPOSTATE LE ARMATE DAL TERRITORIO DI ATTACCO A QUELLO DI DIFESA
-		defendingTerritory.setArmies(armiesToMove);
-		attackingTerritory.setArmies(new_armies_in_attacking_territory-armiesToMove);
+		defendingTerritory.getTerritoryStatus().setArmies(armiesToMove);
+		attackingTerritory.getTerritoryStatus().setArmies(new_armies_in_attacking_territory-armiesToMove);
 	}
 
 
@@ -101,7 +101,7 @@ public class ClassicAttackRules implements AttackRule {
 		ArrayList<Territory> attackingTerritory = new ArrayList<Territory>();
 		for(int i = 0; i<playerTerritory.size(); i++){
 			Territory currentTerritory = playerTerritory.get(i);
-			if(currentTerritory.getArmies() >= 2){
+			if(currentTerritory.getTerritoryStatus().getArmies() >= 2){
 				attackingTerritory.add(currentTerritory);
 			}
 		}
@@ -118,7 +118,7 @@ public class ClassicAttackRules implements AttackRule {
 		Territory attackingTerritory= map.getTerritorybyName(attackingTerritoryName);
 		ArrayList<Territory> attackableTerritories = new ArrayList<Territory>();
 		for(Territory territory : attackingTerritory.getNeighbors()){
-         if(territory.getOwner() != attackingTerritory.getOwner()){
+         if(territory.getTerritoryStatus().getOwner() != attackingTerritory.getTerritoryStatus().getOwner()){
 
          	attackableTerritories.add(territory);
 		 }
@@ -146,7 +146,7 @@ public class ClassicAttackRules implements AttackRule {
 
 	public boolean checkTerritoriesValidity(Territory attackingTerritory, Territory defendingTerritory, String attacckingPlayerId){
 		boolean validity = false;
-		if (attackingTerritory.getOwner().getID().equals(attacckingPlayerId) && attackingTerritory.getNeighbors().contains(defendingTerritory) && !(defendingTerritory.getOwner().getID().equals(attacckingPlayerId))){
+		if (attackingTerritory.getTerritoryStatus().getOwner().getID().equals(attacckingPlayerId) && attackingTerritory.getNeighbors().contains(defendingTerritory) && !(defendingTerritory.getTerritoryStatus().getOwner().getID().equals(attacckingPlayerId))){
 			validity = true;
 		}
 		return validity;
@@ -154,7 +154,7 @@ public class ClassicAttackRules implements AttackRule {
 
 	public boolean checkAttackingArmiesValidity(Territory attackingTerritory, int attackingArmies){
 		boolean validity = false;
-		if (attackingArmies <= 3 && attackingTerritory.getArmies()-attackingArmies >=1){
+		if (attackingArmies <= 3 && attackingTerritory.getTerritoryStatus().getArmies()-attackingArmies >=1){
 			validity = true;
 		}
 		return validity;

@@ -20,7 +20,7 @@ public class Map {
 			Continent currentContinent = this.continents.get(i);
 			ArrayList<Territory> currentTerritories = currentContinent.getTerritories();
 			for(int j = 0; j<currentTerritories.size(); j ++){
-				Player currentPlayer = currentTerritories.get(j).getOwner();
+				Player currentPlayer = currentTerritories.get(j).getTerritoryStatus().getOwner();
 				if(playerID.equals(currentPlayer.getID())){
 					playerTerritories.add(currentTerritories.get(j));
 				}

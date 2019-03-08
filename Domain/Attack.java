@@ -69,7 +69,5 @@ public class Attack {
 		return "Atk: " + this.getAttackingTerritory() + " AtkArmies: " + this.getAttackingArmiesNumber() + " Def: " + this.getDefendingTerritory() + " DefArmies: " + this.getDefendingArmiesNumber() + " Result: " + this.getResult();
 	}
 
-	public Result getAttackResult() {
-		return this.attackResult;
-	}
+
 }

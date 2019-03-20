@@ -1,0 +1,193 @@
+package Domain;
+
+import Foundation.PersistantManager;
+import org.hibernate.Session;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+
+
+      /**  ArrayList<String> colours = new ArrayList<String>();
+        colours.add("black");
+        colours.add("blue");
+        colours.add("red");
+        colours.add("green");
+        colours.add("yellow");
+        colours.add("purple");
+
+        ArrayList<String> playerNames = new ArrayList<String>();
+        playerNames.add("bigfabbro");
+        playerNames.add("livioski");
+        playerNames.add("carlatt");
+        playerNames.add("zar");
+
+        HashMap<String, ArrayList<String>> territoryNamesNeighbors = new HashMap<>();
+        ArrayList<String> neighbors = new ArrayList<>();
+        neighbors.add("Germania");
+        neighbors.add("Francia");
+        territoryNamesNeighbors.put("Benelux", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Germania");
+        neighbors.add("Svizzera");
+        neighbors.add("Italia");
+        territoryNamesNeighbors.put("Austria", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Spagna");
+        territoryNamesNeighbors.put("Portogallo", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Italia");
+        neighbors.add("Francia");
+        neighbors.add("Germania");
+        neighbors.add("Austria");
+        territoryNamesNeighbors.put("Svizzera", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Germania");
+        territoryNamesNeighbors.put("Danimarca", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Francia");
+        neighbors.add("Svizzera");
+        neighbors.add("Austria");
+        territoryNamesNeighbors.put("Italia", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Francia");
+        neighbors.add("Portogallo");
+        territoryNamesNeighbors.put("Spagna", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Svizzera");
+        neighbors.add("Francia");
+        neighbors.add("Benelux");
+        neighbors.add("Danimarca");
+        neighbors.add("Austria");
+        territoryNamesNeighbors.put("Germania", neighbors);
+
+        neighbors = new ArrayList<String>();
+        neighbors.add("Italia");
+        neighbors.add("Svizzera");
+        neighbors.add("Germania");
+        neighbors.add("Benelux");
+        neighbors.add("Spagna");
+        territoryNamesNeighbors.put("Francia", neighbors);
+        //END CONFIGURATION
+
+
+        ArrayList<Domain.Territory> euterritories = new ArrayList<Domain.Territory>();
+        ArrayList<Domain.Player> players = new ArrayList<Domain.Player>();
+        Random rand = new Random();
+
+        //Territories' creation
+        territoryNamesNeighbors.forEach((territoryName, neighs) -> {
+            Domain.Territory territory = new Domain.Territory(territoryName);
+            territory.getTerritoryStatus().setArmies(4);
+            euterritories.add(territory);
+        });
+
+
+        Domain.Continent eu = new Domain.Continent("Europa", euterritories);
+
+        //Players' creation and colour assignment
+        for (String player :
+                playerNames) {
+            int indColour = rand.nextInt(colours.size());
+            players.add(new Domain.Player(player, player));
+            colours.remove(indColour);
+        }
+
+        //Assign Owner to Domain.Territory
+        int i = 0;
+        for (Domain.Territory territory :
+                eu.getTerritories()) {
+            territory.getTerritoryStatus().setOwner(players.get(i));
+            i = (i + 1) % players.size();
+        }
+
+
+        Domain.Map map = new Domain.Map();
+        ArrayList<Domain.Continent> continents = new ArrayList<Domain.Continent>();
+        continents.add(eu);
+        map.setContinents(continents);
+
+        //Impostazione dei vicini
+        territoryNamesNeighbors.forEach((territoryName, neighs) -> {
+            Domain.Territory territory = map.getTerritorybyName(territoryName);
+            for (String neighName :
+                    neighs) {
+                territory.addNeighbor(map.getTerritorybyName(neighName));
+            }
+        }); **/
+
+
+        PersistantManager ps = PersistantManager.getInstance();
+        Session session = ps.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        RiskGame currentGame = session.get(RiskGame.class, 1);
+
+        Map map = currentGame.getMap();
+        ArrayList<Player> players = new ArrayList<Player>();
+        List<RiskGame_Player> rps = currentGame.getRiskGame_players();
+        for(int i=0; i<rps.size(); i++){
+            players.add(rps.get(i).getPlayer());
+        }
+        System.out.println(map);
+
+         //Inizio Gioco
+        Random rand = new Random();
+        boolean play = true;
+        Domain.Turn currentTurn = new Domain.Turn ();
+
+        Domain.ClassicAttackRules atkRules = new Domain.ClassicAttackRules();
+        Domain.CombatPhaseHandler CPH = new Domain.CombatPhaseHandler(currentTurn, atkRules, map);
+        CPH.startCombatPhase();
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Questi sono i giocatori: ");
+        for(int j = 0; j<players.size(); j++){
+            System.out.print(players.get(j)+" ");
+        }
+        System.out.println("Scegli il tuo giocatore: ");
+        String myPlayer = keyboard.next();
+        while(CPH.showAttackingTerritories(myPlayer).size()>0) {
+            System.out.println("I tuoi territori: ");
+            System.out.println(map.getPlayerTerritories(myPlayer));
+            boolean validity = false;
+            while (validity == false){
+            System.out.println("Territori dai quali puoi muovere un attacco: ");
+            System.out.println(CPH.showAttackingTerritories(myPlayer));
+            String atkTerritoryName;
+            do {
+                System.out.println("Inserisci territorio dal quale vuoi muovere un attacco: ");
+                atkTerritoryName = keyboard.next();
+                System.out.println("Territori attaccabili da " + atkTerritoryName + " : \n" + CPH.showAttackableTerritories(atkTerritoryName, myPlayer));
+            }while (CPH.showAttackableTerritories(atkTerritoryName, myPlayer).isEmpty());
+            System.out.println("Inserisci territorio da attaccare: ");
+            String defTerritoryName = keyboard.next();
+            System.out.println("Inserisci numero di armate con il quale attaccare: ");
+            int atkArmies = keyboard.nextInt();
+            validity = CPH.makeAttack(atkTerritoryName, defTerritoryName, atkArmies, myPlayer);
+            }
+            int defArmies = rand.nextInt(6)+1;
+            while(!(CPH.setDefendingArmiesNumber(defArmies))) {
+                System.out.print("inserisci un numero valido\n");
+                defArmies = rand.nextInt(6)+1;
+                TimeUnit.SECONDS.sleep(1);
+            }
+
+            System.out.println("Il difensore ha utilizzato "+defArmies+" armate");
+            CPH.calculateAttackResult();
+        }
+    }
+}
